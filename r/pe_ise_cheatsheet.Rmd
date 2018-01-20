@@ -11,4 +11,122 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Systems Definition, Analysis, and Design
 
-## 
+## System Analysis and Design Tools
+
+## Requirements Analysis
+
+## Performance Measures and Applications
+
+## Modeling Techniques
+
+## Process Types
+
+## Model Interpretation
+
+## Model Verification
+
+## Model Validation
+
+## Bottleneck Analysis
+
+## Value Analysis and Engineering
+
+## Project Management and Planning
+
+# Facilities Engineering and Planning
+
+## Process Flow
+
+## Network Optimization
+
+## Layout Design Techniques
+
+## Space Analysis
+
+## Capacity Analysis
+
+## Cost-Benefit Analysis
+
+## Site Selection Factors
+
+## Site Selection Methods
+
+## Unit Load Analysis
+
+## Material Handling Techniques and Equipment
+
+# Supply Chain Logistics
+
+## Forecasting Methods
+
+## Production Planning Methods
+
+## Engineering Economics
+
+## Costing Systems
+
+## Production Scheduling Methods
+
+## Inventory Management and Control
+
+## Distribution Methods
+
+## Storage and Warehousing Methods
+
+## Transportation Modes
+
+# Work Design
+
+## Motion Economy Rules
+
+## Line Balancing
+
+## Work Measurement Systems Techniques
+
+## Time Study Techniques
+
+## Time Standard Tools
+
+## Sample Size Calculations
+
+## Observation Frequency Methods
+
+## Work Sampling Analysis
+
+## Safety Codes, Standards, and Voluntary Guidelines
+
+## Methods for Quantifying Risk Factors
+
+## Coefficient of Friction
+
+## Rapid Upper Limb Assessment
+
+## Limits of Human Capacity
+
+## Lifting Aids
+
+## Link Analysis and Associated Criteria
+
+## Workplace Design/Human/Computer Interaction
+
+## Day Away, Restricted, and Transferred Rate Calculation
+
+# Quality Engineering
+
+## Statistical Process Control
+
+## Process Capability Analysis
+
+## Acceptance Sampling
+
+## Continuous Improvement Methods
+
+## Techniques for Process Improvement
+
+## Reliability Analysis
+
+## Maintenance Procedures
+
+## Quality Management Systems
+
+## Root Cause Analysis
