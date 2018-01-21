@@ -7,11 +7,81 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(data.table)
+library(DiagrammeR)
+#theme_set(theme_bw)
 ```
 
 # Systems Definition, Analysis, and Design
 
 ## System Analysis and Design Tools
+
+### Cause-Effect Diagram (Fishbone)
+
+```{r}
+
+```
+
+### Pareto Analysis
+
+80% of the items represent 20% of the sales or 20% of the items represent 80% of 
+the cost. This law is a rule of thumb.
+
+```{r}
+set.seed(42)
+items <- paste0("Item ", 1:10)
+itemProbs <- c(.6, .2, rep(.025, 8))
+nItems <- 10000
+itemSamples <- sample(items, nItems, prob = itemProbs, replace = TRUE)
+itemTable <- data.table(items = itemSamples)[
+  ,.(percent = .N/nItems), by = 'items'][order(percent, decreasing = TRUE)
+                                         ][,cumulative := cumsum(percent)][
+                                           ,items := factor(items, levels = items)]
+
+ggplot(itemTable) +
+  geom_bar(aes(items, percent), stat = 'identity') +
+  geom_step(aes(x = as.numeric(items), y = cumulative),
+            color = 'red') +
+  labs('Pareto Analysis'
+       x = "", 
+       y = 'Proportion')
+
+```
+
+### Histogram
+
+A bar chart where values are binned into intervals and the count or frequency is
+the height of the bars.
+
+```{r}
+histData <- rnorm(10000, 100, 10)
+qplot(histData, geom = 'histogram', binwidth = 10) +
+  labs(title = 'Normal Distribution Sample Data (100, 10)',
+       x = 'x')
+```
+
+### Scatterplot
+
+A scatterplot is two numeric variables plotted against each other. Often used to 
+visually determine if there is correlation.
+
+```{r}
+
+spData <- rnorm(1000, 5, 5)
+qplot(spData, spData + rnorm(1000, 0, 3)) +
+  labs(x = 'x',
+       y = 'y')
+```
+
+### Operation Process Chart
+
+### Flow Process Chart
+
+### Left Hand Right Hand Chart
+
+### Queueing Models
+
 
 ## Requirements Analysis
 
