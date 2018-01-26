@@ -82,6 +82,40 @@ qplot(spData, spData + rnorm(1000, 0, 3)) +
 
 ### Queueing Models
 
+Effective vs. Offered Load
+$$\lambda_{eff} = \lambda(1-\pi_m)$$
+Waiting Time Law
+$$L = \sum_{n=0}^Mn\pi_n$$
+$$L_q = \sum_{n=c+1}^{c-1}(n-c)\pi_n$$
+
+Probability of n arivals by time t
+$$P[N(t)=n]=\frac{(\lambda t)^ne^{-\lambda t}}{n!}$$
+$$M/M/1/\infty\quad Queue$$
+Probability of customers in system
+
+$$\pi_0=1-\rho$$
+$$\pi_n=\rho^n(1-\rho)$$
+$$L = \frac{\rho}{1-\rho}$$
+$$L_q = L-\rho=\frac{\rho^2}{1-\rho}$$
+
+$$M/G/1/\infty\quad Queue$$
+Pollaczek-Khintchine Formula
+$$L = L_q+\rho=\frac{\rho^2+\lambda^2\sigma^2}{2(1-\rho)}+\rho$$
+
+$$M/M/c/M\quad Queue$$
+
+$$D = \sum_{n=0}^{c-1}\frac{\rho^n}{n!}+\frac{\rho^c}{c!}[\frac{1-(\rho/c)^{M-c+1}}{1-\rho/c}]$$
+$$\pi_0=\frac{1}{D}$$
+
+$$\pi_n= \begin{cases} 
+\frac{\rho^n}{n!}\pi_0, \quad \text{n<c} \\
+\frac{\rho^n}{c!c^{n-c}}\pi_0, \quad {n\geq c} 
+\end{cases}$$
+
+$$L_q=\pi_0(\frac{\rho^c (M-c)(M-c}}{(c-1)!(c-\rho)^2})$$
+
+When the queue has infinite capacity,
+$$L_q=\pi_0(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}$$
 
 ## Requirements Analysis
 
