@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(data.table)
 library(DiagrammeR)
-#theme_set(theme_bw)
+theme_set(trstyles::theme_tr())
 ```
 
 # Systems Definition, Analysis, and Design
@@ -43,7 +43,7 @@ ggplot(itemTable) +
   geom_bar(aes(items, percent), stat = 'identity') +
   geom_step(aes(x = as.numeric(items), y = cumulative),
             color = 'red') +
-  labs('Pareto Analysis'
+  labs(title = 'Pareto Chart',
        x = "", 
        y = 'Proportion')
 
@@ -76,33 +76,55 @@ qplot(spData, spData + rnorm(1000, 0, 3)) +
 
 ### Operation Process Chart
 
+The operation process chart only has Operations and Inspections.
+
 ### Flow Process Chart
+
+The flow process chart forces a more detailed look at a system.
+
+![ASME standard set of process chart symbols](../img/flow_process_symbols.png)
 
 ### Left Hand Right Hand Chart
 
+Shows when each hand is busy and idle. It is sometimes called a simo chart.
+
 ### Queueing Models
 
-Effective vs. Offered Load
+**Effective vs. Offered Load:**
+
 $$\lambda_{eff} = \lambda(1-\pi_m)$$
-Waiting Time Law
+**Waiting Time Law:**
+
 $$L = \sum_{n=0}^Mn\pi_n$$
 $$L_q = \sum_{n=c+1}^{c-1}(n-c)\pi_n$$
 
-Probability of n arivals by time t
+**Probability of n arivals by time t:**
+
+
 $$P[N(t)=n]=\frac{(\lambda t)^ne^{-\lambda t}}{n!}$$
-$$M/M/1/\infty\quad Queue$$
-Probability of customers in system
+<h5>
+$M/M/1/\infty\quad Queue$
+</h5>
+<hr>
+
+**Probability of customers in system:**
 
 $$\pi_0=1-\rho$$
 $$\pi_n=\rho^n(1-\rho)$$
 $$L = \frac{\rho}{1-\rho}$$
 $$L_q = L-\rho=\frac{\rho^2}{1-\rho}$$
+<h5>
+$M/G/1/\infty\quad Queue$
+</h5>
+<hr>
 
-$$M/G/1/\infty\quad Queue$$
-Pollaczek-Khintchine Formula
+**Pollaczek-Khintchine Formula:**
+
 $$L = L_q+\rho=\frac{\rho^2+\lambda^2\sigma^2}{2(1-\rho)}+\rho$$
-
-$$M/M/c/M\quad Queue$$
+<h5>
+$M/M/c/M\quad Queue$
+</h5>
+<hr>
 
 $$D = \sum_{n=0}^{c-1}\frac{\rho^n}{n!}+\frac{\rho^c}{c!}[\frac{1-(\rho/c)^{M-c+1}}{1-\rho/c}]$$
 $$\pi_0=\frac{1}{D}$$
@@ -112,10 +134,22 @@ $$\pi_n= \begin{cases}
 \frac{\rho^n}{c!c^{n-c}}\pi_0, \quad {n\geq c} 
 \end{cases}$$
 
-$$L_q=\pi_0(\frac{\rho^c (M-c)(M-c}}{(c-1)!(c-\rho)^2})$$
 
-When the queue has infinite capacity,
-$$L_q=\pi_0(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}$$
+
+$$L_q=\pi_0\bigg(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}\bigg)
+\bigg[1-\big(\frac{\rho}{c}\big)^{M-c}-(M-c)\big(\frac{\rho}{c}\big)^{M-c}\big(1-\frac{\rho}{c}\big)\bigg],\quad \rho\neq c$$
+
+$$L_q=\pi_0\bigg(\frac{\rho^c (M-c)(M-c+1)}{2c!}\bigg),\quad \rho=c$$
+
+$$L_q=\pi_0\bigg(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}\bigg),\quad c=\infty$$
+
+### Linear Programming
+
+**Procedure:**
+
+1. Identify the primary decision variables
+2. Identify the constraint linear functions
+3. Identify the objective linear function
 
 ## Requirements Analysis
 
