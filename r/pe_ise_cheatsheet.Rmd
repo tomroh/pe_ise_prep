@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center')
 library(ggplot2)
 library(data.table)
 library(DiagrammeR)
@@ -19,9 +19,7 @@ theme_set(trstyles::theme_tr())
 
 ### Cause-Effect Diagram (Fishbone)
 
-```{r}
-
-```
+![](../img/fishbone.png)
 
 ### Pareto Analysis
 
@@ -70,7 +68,13 @@ visually determine if there is correlation.
 
 spData <- rnorm(1000, 5, 5)
 qplot(spData, spData + rnorm(1000, 0, 3)) +
-  labs(x = 'x',
+  labs(title = 'Correlation',
+       x = 'x',
+       y = 'y')
+
+qplot(spData, rnorm(1000, 5, 5)) +
+  labs(title = 'No correlation',
+       x = 'x',
        y = 'y')
 ```
 
