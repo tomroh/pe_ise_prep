@@ -272,3 +272,19 @@ $$L_q=\pi_0\bigg(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}\bigg),\quad c=\infty$$
 ## Quality Management Systems
 
 ## Root Cause Analysis
+
+
+## Engineering Economics
+
+$$\bigg(\frac{F}{P}\bigg)= (1+i)^N$$
+
+$$\bigg(\frac{P}{F}\bigg)= \frac{1}{(1+i)^N}$$
+
+$$\bigg(\frac{F}{A}\bigg)= \frac{(1+i)^N-1}{i}$$
+
+
+$$\bigg(\frac{P}{A}\bigg)= \frac{(1+i)^N-1}{i(1+i)^N}$$
+
+$$\bigg(\frac{A}{F}\bigg)= \frac{i}{(1+i)^N-1}$$
+
+$$\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
