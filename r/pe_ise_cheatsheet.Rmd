@@ -167,7 +167,14 @@ $$L_q=\pi_0\bigg(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}\bigg),\quad c=\infty$$
 
 ## Model Verification
 
+A model has been verified if a range of models produce similar results on the 
+same situation
+
+
 ## Model Validation
+
+A model has been validated if a range of results produce similar results on 
+the same situation
 
 ## Bottleneck Analysis
 
@@ -176,6 +183,24 @@ $$L_q=\pi_0\bigg(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}\bigg),\quad c=\infty$$
 ## Project Management and Planning
 
 # Facilities Engineering and Planning
+
+## People/Equipment Requirements
+
+$$M_j = \sum_{i=1}^{n} \frac{P_{ij}T_{ij}}{C_{ij}} \\ M_j = \textrm{number of machines/people} \\ P = \textrm{production rate} \\ T = \textrm{production time} \\ C = \textrm{production period} \\ n = \textrm{number of products}$$
+
+## Material Handling
+
+Euclidian:
+
+$$d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$$
+
+Manhattan:
+
+$$|x_2-x_1| + |y_2-y_1|$$
+
+Chebyshev (simultaneous x and y movement)
+
+$$max(|x_2-x_1|,|y_2-y_1|)$$
 
 ## Process Flow
 
@@ -341,13 +366,13 @@ $$\chi^2=\sum_{j=1}^k\frac{(O_j-E_j)^2}{E_j}$$
 ## Linear Regression
 
 
-$$SSR=\sum_{i=1}^n(\hat{y}-\bar{y})^2$$
+$$SSR=\sum_{i=1}^n(\hat{y}_i-\bar{y})^2$$
 
-$$SSE = \sum_{i=1}^n(y_i-(a+bx_i))^2$$
+$$SSE = \sum_{i=1}^n(y_i-\hat{y}_i)^2$$
 
-$$SST = \sum_{i=1}^n(y-\bar{y})^2$$
+$$SST = \sum_{i=1}^n(y_i-\bar{y})^2$$
 
-$$R^2=1-\frac{SSR}{SST}$$
+$$R^2=\frac{SSR}{SST} = 1-\frac{SSE}{SST}$$
 
 ## ANOVA
 
@@ -355,16 +380,20 @@ Given treatment factors A & B:
 
 $$SST=SSA+SSB+SSAB+SSE$$
 
-Two Way ANOVA
+### ANOVA Table
 
 ```{r twoway ANOVA}
-variables <- c('A', 'B', 'AB', 'E', 'T')
 SS <- c('SSA', 'SSB', 'SSAB', 'SSE', 'SST')
-df <- c('A-1', 'B-1', 'dfA*dfB', 'AB(n-1)')  
+df <- c('a-1', 'b-1', '(a-1)(b-1)', 'ab(n-1)', 'abn-1')
+MS <- c('SSA/dfA', 'SSB/dfB', 'SSAB/dfAB', 'SSE/dfE', '')
+fstat <- c('MSA/MSE', 'MSB/MSE', 'MSAB/MSE', '', '')
+anovaTable <- data.frame(SS,
+                         df,
+                         MS,
+                         "F" = fstat)
+knitr::kable(anovaTable)
 ```
 
-
-## F Test
 
 # Forecasting
 
@@ -375,4 +404,73 @@ $$\hat{d}_t = \frac{\sum_{i=1}^{n}d_{t-i}}{n}$$
 ## Exponentially Weighted Moving Average
 
 $$\hat{d}_t = \alpha d_{t-1}+(1-\alpha)\hat{d}_{t-1},\quad 0 \leq \alpha( \textrm{smoothing constant})\leq1$$
+
+# Quality Control
+
+## X & R-Chart
+
+$$UCL = D_4\bar{R} \\ CL = \bar{R} \\ LCL = D_3\bar{R}$$
+
+$$UCL = \bar{\bar{X}}+A_2\bar{R} \\ CL = \bar{\bar{X}} \\ LCL = \bar{\bar{X}}-A_2\bar{R}$$
+
+## X & S-Chart
+
+$$UCL=B_4\bar{S} \\ CL = \bar{X} \\ LCL = B_3\bar{S}$$
+
+$$UCL = \bar{\bar{X}} + A_3\bar{S} \\ CL = \bar{\bar{X}} \\ LCL = \bar{\bar{X}}-A_3\bar{S}$$
+
+## P-Chart
+
+$$UCL = \bar{p}+3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}} \\ CL = \bar{p} \\ LCL = \bar{p} - 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}$$
+
+## C-Chart
+
+$$UCL = \bar{c}+3\sqrt{\bar{c}} \\ CL = \bar{c} \\ LCL = \bar{c}-3\sqrt{\bar{c}}$$
+
+## Tests for Out of Control
+
+1. A single point falls outside three sigma control limits
+2. Two out of three successive points fall on the same side of and more than two 
+sigma units from the center line
+3. Four out of five successive points fall on the same side of and more than 
+one sigma unit from the center line
+4. Eight successive points fall on the same side of the center line
+
+## Control vs. Capability
+
+In control if it is within natural variabiliyt
+
+Is capable if it is entirely within specification
+
+## Reliability
+
+Series:
+
+$$R = \prod_{i=1}^n P_i$$
+
+Parallel:
+
+$$R = 1-\prod_{i=1}^n (1-P_i) $$
+
+## Process Capability
+
+Actual Capability:
+
+$$C_{pk}=min\bigg(\frac{\mu-LSL}{3\sigma},\frac{USL-\mu}{3\sigma}\bigg)$$
+
+Potential Capability:
+
+$$C_p = \frac{USL-LSL}{6\sigma}$$
+
+## Taylor Tool Life
+
+$$VT^n=C \\ V = \textrm{speed surface feet per minute} \\ T = \textrm{tool life in minutes} \\ C,n = \textrm{constants that depend on material and tool}$$
+
+## Work Sampling
+
+$$D = Z_{\alpha/2}\sqrt{\frac{p(-1-p)}{n}}, \quad Z_{\alpha/2}\sqrt{\frac{1-p}{pn}} \\ p = \textrm{proportion of observed time} \\ D = \textrm{absolute error} \\ R = \textrm{relative error} = \frac{D}{p} \\ n = \textrm{sample size}$$
+
+## Critical Path Method
+
+$$T = \sum_{(i,j)\in CP}d_{ij}$$
 
