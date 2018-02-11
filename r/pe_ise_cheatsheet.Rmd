@@ -288,3 +288,91 @@ $$\bigg(\frac{P}{A}\bigg)= \frac{(1+i)^N-1}{i(1+i)^N}$$
 $$\bigg(\frac{A}{F}\bigg)= \frac{i}{(1+i)^N-1}$$
 
 $$\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
+
+## Learning Curve
+
+$$y=kx^n, n=\frac{log_{e}(\textrm{learning ratio})}{log_{e}(2)}$$
+
+Total Learning Time:
+
+$$T=k\frac{[(x_2+\frac{1}{2})^{n+1}-(x_1+\frac{1}{2})^{n+1}]}{n+1}$$
+
+Remission Line:
+
+$$y=k+\frac{(k-s)(x-1)}{1-x_s}$$
+
+# Inventory Management
+
+## Economic Order Quantity
+
+$$Q=\sqrt\frac{2DK}{h},D=\textrm{demand},K=\textrm{cost per order},h=\textrm{holding cost}$$
+
+## Economic Manufacturing Quantity
+
+$$Q = \sqrt{\frac{2AD}{h(1-\frac{D}{R})}} $$
+
+# Statistics
+
+## Normal Distribution
+
+$$z=\frac{x-\mu}{\sigma}$$
+Two-means comparison:
+
+$$z_0=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$$
+
+## student-t Distribution
+
+t-score:
+
+$$t=\frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}}$$
+
+Two-means comparison:
+
+$$t_0=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}$$
+
+df for Two Sample t-test:
+
+$$df=\frac{\big(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\big)^2}{\frac{(\frac{s_1^2}{n_1})^2}{n_1-1}+{\frac{(\frac{s_1^2}{n_1})^2}{n_1-1}}}$$
+
+## Chi-Squared Goodness of Fit
+
+$$\chi^2=\sum_{j=1}^k\frac{(O_j-E_j)^2}{E_j}$$
+
+## Linear Regression
+
+
+$$SSR=\sum_{i=1}^n(\hat{y}-\bar{y})^2$$
+
+$$SSE = \sum_{i=1}^n(y_i-(a+bx_i))^2$$
+
+$$SST = \sum_{i=1}^n(y-\bar{y})^2$$
+
+$$R^2=1-\frac{SSR}{SST}$$
+
+## ANOVA
+
+Given treatment factors A & B:
+
+$$SST=SSA+SSB+SSAB+SSE$$
+
+Two Way ANOVA
+
+```{r twoway ANOVA}
+variables <- c('A', 'B', 'AB', 'E', 'T')
+SS <- c('SSA', 'SSB', 'SSAB', 'SSE', 'SST')
+df <- c('A-1', 'B-1', 'dfA*dfB', 'AB(n-1)')  
+```
+
+
+## F Test
+
+# Forecasting
+
+## Moving Average
+
+$$\hat{d}_t = \frac{\sum_{i=1}^{n}d_{t-i}}{n}$$
+
+## Exponentially Weighted Moving Average
+
+$$\hat{d}_t = \alpha d_{t-1}+(1-\alpha)\hat{d}_{t-1},\quad 0 \leq \alpha( \textrm{smoothing constant})\leq1$$
+
