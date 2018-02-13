@@ -231,6 +231,24 @@ relChart <- data.frame(Code, Closeness, Rank,
 knitr::kable(relChart)
 ```
 
+## Assignment Problem
+
+**Hungarian Procedure:**
+
+1. Subtract the minimum of the row from all elements in the row
+2. Substract the minimum of the column from all elements in the columns
+3. Try to make a valid assignment using the zero elements, if all assigments 
+cannot be made proceed to next step
+4. Cover all zeroes with the minimal number of lines
+5. From each uncovered element subtract the minimum of the uncovered *y*, 
+add *y* to each intersection element. Go to step 3.
+6. Transfer the assignment plan to the original cost table.
+
+## Transportation Problem
+
+$$min \quad \sum_{i=1}^m \sum_{j=1}^nx_{ij}c_{ij} \\ \sum_{j=1}^nx_{ij}=s_i, n = 1, 2, ..., m \\ \sum_{i=1}^mx_{ij}=d_j, m = 1, 2, ..., n$$
+
+
 
 ## Process Flow
 
@@ -364,7 +382,21 @@ $$Q=\sqrt\frac{2DK}{h},D=\textrm{demand},K=\textrm{cost per order},h=\textrm{hol
 
 ## Economic Manufacturing Quantity
 
-$$Q = \sqrt{\frac{2AD}{h(1-\frac{D}{R})}} $$
+$$Q = \sqrt{\frac{2AD}{h(1-\frac{D}{R})}}, R = \textrm{production rate} $$
+
+## Scheduling
+
+1. Earliest Due Date - order jobs by due date
+2. Shortest Processing Time - order jobs by processing time
+3. Critical Ratio - divide time remaining until due date by time left on the 
+machine, order by smallest critical ratio
+
+**Johnson's Optimal Rule for Two Machines**
+
+1. Find the shortest processsing times and arbitrarily break ties
+2. If the shortest processing time is on Machine A, schedule immediately. If the
+shortest processing time is on Machine B, schedule it as late as possible.
+3. Eliminate the last job scheduled on the list and repeat step 1-2.
 
 # Statistics
 
