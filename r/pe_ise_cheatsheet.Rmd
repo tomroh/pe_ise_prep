@@ -190,17 +190,47 @@ $$M_j = \sum_{i=1}^{n} \frac{P_{ij}T_{ij}}{C_{ij}} \\ M_j = \textrm{number of ma
 
 ## Material Handling
 
-Euclidian:
+**Euclidian:**
 
 $$d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$$
+$$min\quad \sum_{i=1}^mw_i[(x-a_i)^2+(y-b_i)]^{\frac{1}{2}}$$
+If there are 4 locations with equal weight, the optimal location is the facility 
+within a triangle of the other facilities. If there is no such facility, 
+the optimal location is at the intersection of two lines.
 
-Manhattan:
+When the weighted costs are proportional to the square of the Euclidean distance, 
+it is called the 'gravity' problem.
+
+$$min\quad \sum_{i=1}^mw_i[(x-a_i)^2+(y-b_i)^2]$$
+
+$$x = \frac{\sum_{i=1}^mw_ia_i}{\sum_{i=1}^mw_i}$$
+$$y = \frac{\sum_{i=1}^mw_ib_i}{\sum_{i=1}^mw_i}$$
+
+**Manhattan:**
 
 $$|x_2-x_1| + |y_2-y_1|$$
+
+$$min\quad \sum_{i=1}^m w_i(|x-a_1|+|y-b_i|)$$
+
+The x value is the median of the location x-coordinates.
+The y value is the median of the location y-coordinates.
 
 Chebyshev (simultaneous x and y movement)
 
 $$max(|x_2-x_1|,|y_2-y_1|)$$
+
+## Relationship Chart
+
+```{r relationship chart}
+Code <- c('A', 'E', 'I', 'O', 'U', 'X')
+Closeness <- c('Absolutely Necessar', 'Especially Important', 'Important',
+               'Ordinary Closeness', 'Unimportant', 'Not desirable')
+Rank <- c(.95, .85, .7, .5, 0, "-")
+relChart <- data.frame(Code, Closeness, Rank,
+                       stringsAsFactors = FALSE)
+knitr::kable(relChart)
+```
+
 
 ## Process Flow
 
