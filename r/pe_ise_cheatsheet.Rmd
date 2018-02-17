@@ -268,7 +268,11 @@ $$min \quad \sum_{i=1}^m \sum_{j=1}^nx_{ij}c_{ij} \\ \sum_{j=1}^nx_{ij}=s_i, n =
 
 ## Unit Load Analysis
 
+A unit load is collection of items that can be stored in one place as a unit.
+
 ## Material Handling Techniques and Equipment
+
+
 
 # Supply Chain Logistics
 
@@ -288,7 +292,21 @@ $$min \quad \sum_{i=1}^m \sum_{j=1}^nx_{ij}c_{ij} \\ \sum_{j=1}^nx_{ij}=s_i, n =
 
 ## Storage and Warehousing Methods
 
+1. Dedicated Storage
+    * easy to retrieve items
+    * Sum of maximum of each product
+2. Random Storage
+    * more efficient use of space
+    * Maximum of the sums of all products
+    
 ## Transportation Modes
+
+1. Variable Path
+    * truck, vehicle anything that does not have one fixed path
+    * versatility
+2. Fixed Path
+    * conveyor
+    * tied to one path
 
 # Work Design
 
@@ -378,11 +396,20 @@ $$y=k+\frac{(k-s)(x-1)}{1-x_s}$$
 
 ## Economic Order Quantity
 
-$$Q=\sqrt\frac{2DK}{h},D=\textrm{demand},K=\textrm{cost per order},h=\textrm{holding cost}$$
+$$Q^*=\sqrt{\frac{2C_pD}{h}R} \\ R = \frac{1}{1-\frac{D}{P}},\quad\textrm{R=1, when replenishment is instaneous} \\ D=\textrm{demand},P=\textrm{production rate},C_p=\textrm{cost per order},h=\textrm{holding cost}$$
 
 ## Economic Manufacturing Quantity
 
-$$Q = \sqrt{\frac{2AD}{h(1-\frac{D}{R})}}, R = \textrm{production rate} $$
+Use the equation above with R not equal to 1.
+
+## With shortage costs
+
+$$Q^* = \sqrt{\frac{2C_pD}{h}R\big(\frac{h+z}{z}\big)} \\ z = \textrm{shortage cost}$$
+
+$$M^*=\sqrt{\frac{2C_pD(1-\frac{D}{P})h}{z(h+z)}} \\ M = \textrm{allowed shortage}$$
+## Probabilistic Inventory Models
+
+
 
 ## Scheduling
 
