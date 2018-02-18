@@ -170,13 +170,15 @@ $$L_q=\pi_0\bigg(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}\bigg),\quad c=\infty$$
 A model has been verified if a range of models produce similar results on the 
 same situation
 
-
 ## Model Validation
 
 A model has been validated if a range of results produce similar results on 
 the same situation
 
 ## Bottleneck Analysis
+
+Optimize the process that is the bottleneck, then re-evaulate the bottleneck and
+repeat.
 
 ## Value Analysis and Engineering
 
