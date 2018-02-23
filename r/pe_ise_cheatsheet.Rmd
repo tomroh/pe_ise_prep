@@ -384,13 +384,13 @@ $$\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
 
 ## Learning Curve
 
-$$y=kx^n, n=\frac{log_{e}(\textrm{learning ratio})}{log_{e}(2)}$$
+$$y=kx^n, n=\frac{log_{e}\phi}{log_{e}(2)} \\ \phi=\textrm{learning ratio}=\frac{T(2N)}{T(N)}, \textrm{T(N) = time to produce Nth unit} \\ \textrm{y=total time, k = time to produce first unit, x = number of units produced}$$
 
-Total Learning Time:
+**Total Learning Time:**
 
 $$T=k\frac{[(x_2+\frac{1}{2})^{n+1}-(x_1+\frac{1}{2})^{n+1}]}{n+1}$$
 
-Remission Line:
+**Remission Line:**
 
 $$y=k+\frac{(k-s)(x-1)}{1-x_s}$$
 
@@ -432,21 +432,21 @@ shortest processing time is on Machine B, schedule it as late as possible.
 ## Normal Distribution
 
 $$z=\frac{x-\mu}{\sigma}$$
-Two-means comparison:
+**Two-means comparison:**
 
 $$z_0=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$$
 
 ## student-t Distribution
 
-t-score:
+**t-score:**
 
 $$t=\frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}}$$
 
-Two-means comparison:
+**Two-means comparison:**
 
 $$t_0=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}$$
 
-df for Two Sample t-test:
+**df for Two Sample t-test:**
 
 $$df=\frac{\big(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\big)^2}{\frac{(\frac{s_1^2}{n_1})^2}{n_1-1}+{\frac{(\frac{s_1^2}{n_1})^2}{n_1-1}}}$$
 
@@ -535,21 +535,21 @@ Is capable if it is entirely within specification
 
 ## Reliability
 
-Series:
+**Series:**
 
 $$R = \prod_{i=1}^n P_i$$
 
-Parallel:
+**Parallel:**
 
 $$R = 1-\prod_{i=1}^n (1-P_i) $$
 
 ## Process Capability
 
-Actual Capability:
+**Actual Capability:**
 
 $$C_{pk}=min\bigg(\frac{\mu-LSL}{3\sigma},\frac{USL-\mu}{3\sigma}\bigg)$$
 
-Potential Capability:
+**Potential Capability:**
 
 $$C_p = \frac{USL-LSL}{6\sigma}$$
 
@@ -564,4 +564,18 @@ $$D = Z_{\alpha/2}\sqrt{\frac{p(-1-p)}{n}}, \quad Z_{\alpha/2}\sqrt{\frac{1-p}{p
 ## Critical Path Method
 
 $$T = \sum_{(i,j)\in CP}d_{ij}$$
+## Standard Time
+
+$$\textrm{Observed Time * Pace Rating * (1 + personal time allowance) * (1 + fatigue allowance)}$$
+
+## Recommended Weight Limit
+
+Units are pounds and inches.
+
+$$RWL = 51(10/H)(1-.0075|V-30|)(.82+\frac{1.8}{D}(1-.0032A)FM*CM \\ \textrm{H = horizontal location of the load forward of the midpoint of the ankles} \\ \textrm{V = vertical location of the load} \\ \textrm{D = Vertical travel distance between the origin and the destination} \\ \textrm{A=angle of asymmetry between hands and feet} \\ \textrm{FM = frequency multiplier (from table)} \\ \textrm{CM = coupling mulitiplier (from table)}$$
+
+Notes:
+
+* add birth death equation
+* affinity diagram
 
