@@ -88,47 +88,23 @@ The flow process chart forces a more detailed look at a system.
 
 ![ASME standard set of process chart symbols](../img/flow_process_symbols.png)
 
+
+### Affinity Diagram
+
+organizes a large number of ideas into their natural relationships
+
 ### Left Hand Right Hand Chart
 
 Shows when each hand is busy and idle. It is sometimes called a simo chart.
 
-### Taylor Tool Life
-
-$$VT^n=C \\ V = \textrm{speed surface feet per minute} \\ T = \textrm{tool life in minutes} \\ C,n = \textrm{constants that depend on material and tool}$$
-
-### Work Sampling
-
-$$D = Z_{\alpha/2}\sqrt{\frac{p(-1-p)}{n}}, \quad Z_{\alpha/2}\sqrt{\frac{1-p}{pn}} \\ p = \textrm{proportion of observed time} \\ D = \textrm{absolute error} \\ R = \textrm{relative error} = \frac{D}{p} \\ n = \textrm{sample size}$$
-
-### Critical Path Method
-
-$$T = \sum_{(i,j)\in CP}d_{ij}$$
-
-### Reliability
-
-**Series:**
-
-$$R = \prod_{i=1}^n P_i$$
-
-**Parallel:**
-
-$$R = 1-\prod_{i=1}^n (1-P_i) $$
-
-### Process Capability
-
-**Actual Capability:**
-
-$$C_{pk}=min\bigg(\frac{\mu-LSL}{3\sigma},\frac{USL-\mu}{3\sigma}\bigg)$$
-
-**Potential Capability:**
-
-$$C_p = \frac{USL-LSL}{6\sigma}$$
+## Modeling Techniques
 
 ### Queueing Models
 
 **Effective vs. Offered Load:**
 
 $$\lambda_{eff} = \lambda(1-\pi_m)$$
+
 **Waiting Time Law:**
 
 $$L = \sum_{n=0}^Mn\pi_n$$
@@ -179,6 +155,13 @@ $$L_q=\pi_0\bigg(\frac{\rho^c (M-c)(M-c+1)}{2c!}\bigg),\quad \rho=c$$
 
 $$L_q=\pi_0\bigg(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}\bigg),\quad c=\infty$$
 
+<h5>
+$M/M/1/K\quad Queue$
+</h5>
+<hr>
+$$p_0^`(t)=\mu_1p_1(t)-\lambda_0p_0(t) \\
+p_k^`(t)=\lambda_{k-1}p_{k-1}(t)+\mu_{k+1}p_{k+1}(t)-(\lambda_k+\mu_k)p_{k}(t) \quad for \quad k \le K$$
+
 ### Linear Programming
 
 **Procedure:**
@@ -197,28 +180,11 @@ same situation
 A model has been validated if a range of results produce similar results on 
 the same situation
 
+
 ### Bottleneck Analysis
 
 Optimize the process that is the bottleneck, then re-evaulate the bottleneck and
 repeat.
-
-### Engineering Economics
-
-* Denominator is current value and Numerator is desired conversion
-
-$$\bigg(\frac{F}{P}\bigg)= (1+i)^N$$
-
-$$\bigg(\frac{P}{F}\bigg)= \frac{1}{(1+i)^N}$$
-
-$$\bigg(\frac{F}{A}\bigg)= \frac{(1+i)^N-1}{i}$$
-
-
-$$\bigg(\frac{P}{A}\bigg)= \frac{(1+i)^N-1}{i(1+i)^N}$$
-
-$$\bigg(\frac{A}{F}\bigg)= \frac{i}{(1+i)^N-1}$$
-
-$$\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
-
 
 # Facilities Engineering and Planning
 
@@ -269,33 +235,6 @@ relChart <- data.frame(Code, Closeness, Rank,
 knitr::kable(relChart)
 ```
 
-
-
-
-## Process Flow
-
-## Network Optimization
-
-## Layout Design Techniques
-
-## Space Analysis
-
-## Capacity Analysis
-
-## Cost-Benefit Analysis
-
-## Site Selection Factors
-
-## Site Selection Methods
-
-## Unit Load Analysis
-
-A unit load is collection of items that can be stored in one place as a unit.
-
-## Material Handling Techniques and Equipment
-
-
-
 # Supply Chain Logistics
 
 ## Forecasting Methods
@@ -307,6 +246,7 @@ $$\hat{d}_t = \frac{\sum_{i=1}^{n}d_{t-i}}{n}$$
 ### Exponentially Weighted Moving Average
 
 $$\hat{d}_t = \alpha d_{t-1}+(1-\alpha)\hat{d}_{t-1},\quad 0 \leq \alpha( \textrm{smoothing constant})\leq1$$
+
 ## Production Planning Methods
 
 **Systems to compute Master Production and Ordering Plan**
@@ -331,6 +271,7 @@ $$\bigg(\frac{P}{A}\bigg)= \frac{(1+i)^N-1}{i(1+i)^N}$$
 $$\bigg(\frac{A}{F}\bigg)= \frac{i}{(1+i)^N-1}$$
 
 $$\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
+*Denominator is current value and Numerator is desired conversion
 
 ## Production Scheduling Methods
 
@@ -416,61 +357,27 @@ add *y* to each intersection element. Go to step 3.
 
 # Work Design
 
-## Motion Economy Rules
+## Taylor Tool Life
 
-## Line Balancing
+$$VT^n=C \\ V = \textrm{speed surface feet per minute} \\ T = \textrm{tool life in minutes} \\ C,n = \textrm{constants that depend on material and tool}$$
 
-## Work Measurement Systems Techniques
+## Work Sampling
 
-## Time Study Techniques
+$$D = Z_{\alpha/2}\sqrt{\frac{p(-1-p)}{n}}, \quad Z_{\alpha/2}\sqrt{\frac{1-p}{pn}} \\ p = \textrm{proportion of observed time} \\ D = \textrm{absolute error} \\ R = \textrm{relative error} = \frac{D}{p} \\ n = \textrm{sample size}$$
 
-## Time Standard Tools
+## Critical Path Method
 
-## Sample Size Calculations
+$$T = \sum_{(i,j)\in CP}d_{ij}$$
 
-## Observation Frequency Methods
+## Standard Time
 
-## Work Sampling Analysis
+$$\textrm{Observed Time * Pace Rating * (1 + personal time allowance) * (1 + fatigue allowance)}$$
 
-## Safety Codes, Standards, and Voluntary Guidelines
+## Recommended Weight Limit
 
-## Methods for Quantifying Risk Factors
+Units are pounds and inches.
 
-## Coefficient of Friction
-
-## Rapid Upper Limb Assessment
-
-## Limits of Human Capacity
-
-## Lifting Aids
-
-## Link Analysis and Associated Criteria
-
-## Workplace Design/Human/Computer Interaction
-
-## Day Away, Restricted, and Transferred Rate Calculation
-
-# Quality Engineering
-
-## Statistical Process Control
-
-## Process Capability Analysis
-
-## Acceptance Sampling
-
-## Continuous Improvement Methods
-
-## Techniques for Process Improvement
-
-## Reliability Analysis
-
-## Maintenance Procedures
-
-## Quality Management Systems
-
-## Root Cause Analysis
-
-
+$$RWL = 51(10/H)(1-.0075|V-30|)(.82+\frac{1.8}{D}(1-.0032A)FM*CM \\ \textrm{H = horizontal location of the load forward of the midpoint of the ankles} \\ \textrm{V = vertical location of the load} \\ \textrm{D = Vertical travel distance between the origin and the destination} \\ \textrm{A=angle of asymmetry between hands and feet} \\ \textrm{FM = frequency multiplier (from table)} \\ \textrm{CM = coupling mulitiplier (from table)}$$
 
 ## Learning Curve
 
@@ -484,12 +391,64 @@ $$T=k\frac{[(x_2+\frac{1}{2})^{n+1}-(x_1+\frac{1}{2})^{n+1}]}{n+1}$$
 
 $$y=k+\frac{(k-s)(x-1)}{1-x_s}$$
 
+# Quality Control
 
-## Probabilistic Inventory Models
+## Statistical Process Control
 
+### X & R-Chart
 
+$$UCL = D_4\bar{R} \\ CL = \bar{R} \\ LCL = D_3\bar{R}$$
 
+$$UCL = \bar{\bar{X}}+A_2\bar{R} \\ CL = \bar{\bar{X}} \\ LCL = \bar{\bar{X}}-A_2\bar{R}$$
 
+### X & S-Chart
+
+$$UCL=B_4\bar{S} \\ CL = \bar{X} \\ LCL = B_3\bar{S}$$
+
+$$UCL = \bar{\bar{X}} + A_3\bar{S} \\ CL = \bar{\bar{X}} \\ LCL = \bar{\bar{X}}-A_3\bar{S}$$
+
+### P-Chart
+
+$$UCL = \bar{p}+3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}} \\ CL = \bar{p} \\ LCL = \bar{p} - 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}$$
+
+### C-Chart
+
+$$UCL = \bar{c}+3\sqrt{\bar{c}} \\ CL = \bar{c} \\ LCL = \bar{c}-3\sqrt{\bar{c}}$$
+
+### Tests for Out of Control
+
+1. A single point falls outside three sigma control limits
+2. Two out of three successive points fall on the same side of and more than two 
+sigma units from the center line
+3. Four out of five successive points fall on the same side of and more than 
+one sigma unit from the center line
+4. Eight successive points fall on the same side of the center line
+
+## Control vs. Capability
+
+In control if it is within natural variability
+
+Is capable if it is entirely within specification
+
+## Process Capability
+
+**Actual Capability:**
+
+$$C_{pk}=min\bigg(\frac{\mu-LSL}{3\sigma},\frac{USL-\mu}{3\sigma}\bigg)$$
+
+**Potential Capability:**
+
+$$C_p = \frac{USL-LSL}{6\sigma}$$
+
+## Reliability Analysis
+
+**Series:**
+
+$$R = \prod_{i=1}^n P_i$$
+
+**Parallel:**
+
+$$R = 1-\prod_{i=1}^n (1-P_i) $$
 
 # Statistics
 
@@ -559,88 +518,5 @@ anovaTable <- data.frame(SS,
                          "F" = fstat)
 knitr::kable(anovaTable)
 ```
-
-# Quality Control
-
-## X & R-Chart
-
-$$UCL = D_4\bar{R} \\ CL = \bar{R} \\ LCL = D_3\bar{R}$$
-
-$$UCL = \bar{\bar{X}}+A_2\bar{R} \\ CL = \bar{\bar{X}} \\ LCL = \bar{\bar{X}}-A_2\bar{R}$$
-
-## X & S-Chart
-
-$$UCL=B_4\bar{S} \\ CL = \bar{X} \\ LCL = B_3\bar{S}$$
-
-$$UCL = \bar{\bar{X}} + A_3\bar{S} \\ CL = \bar{\bar{X}} \\ LCL = \bar{\bar{X}}-A_3\bar{S}$$
-
-## P-Chart
-
-$$UCL = \bar{p}+3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}} \\ CL = \bar{p} \\ LCL = \bar{p} - 3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}$$
-
-## C-Chart
-
-$$UCL = \bar{c}+3\sqrt{\bar{c}} \\ CL = \bar{c} \\ LCL = \bar{c}-3\sqrt{\bar{c}}$$
-
-## Tests for Out of Control
-
-1. A single point falls outside three sigma control limits
-2. Two out of three successive points fall on the same side of and more than two 
-sigma units from the center line
-3. Four out of five successive points fall on the same side of and more than 
-one sigma unit from the center line
-4. Eight successive points fall on the same side of the center line
-
-## Control vs. Capability
-
-In control if it is within natural variability
-
-Is capable if it is entirely within specification
-
-## Reliability
-
-**Series:**
-
-$$R = \prod_{i=1}^n P_i$$
-
-**Parallel:**
-
-$$R = 1-\prod_{i=1}^n (1-P_i) $$
-
-## Process Capability
-
-**Actual Capability:**
-
-$$C_{pk}=min\bigg(\frac{\mu-LSL}{3\sigma},\frac{USL-\mu}{3\sigma}\bigg)$$
-
-**Potential Capability:**
-
-$$C_p = \frac{USL-LSL}{6\sigma}$$
-
-## Taylor Tool Life
-
-$$VT^n=C \\ V = \textrm{speed surface feet per minute} \\ T = \textrm{tool life in minutes} \\ C,n = \textrm{constants that depend on material and tool}$$
-
-## Work Sampling
-
-$$D = Z_{\alpha/2}\sqrt{\frac{p(-1-p)}{n}}, \quad Z_{\alpha/2}\sqrt{\frac{1-p}{pn}} \\ p = \textrm{proportion of observed time} \\ D = \textrm{absolute error} \\ R = \textrm{relative error} = \frac{D}{p} \\ n = \textrm{sample size}$$
-
-## Critical Path Method
-
-$$T = \sum_{(i,j)\in CP}d_{ij}$$
-## Standard Time
-
-$$\textrm{Observed Time * Pace Rating * (1 + personal time allowance) * (1 + fatigue allowance)}$$
-
-## Recommended Weight Limit
-
-Units are pounds and inches.
-
-$$RWL = 51(10/H)(1-.0075|V-30|)(.82+\frac{1.8}{D}(1-.0032A)FM*CM \\ \textrm{H = horizontal location of the load forward of the midpoint of the ankles} \\ \textrm{V = vertical location of the load} \\ \textrm{D = Vertical travel distance between the origin and the destination} \\ \textrm{A=angle of asymmetry between hands and feet} \\ \textrm{FM = frequency multiplier (from table)} \\ \textrm{CM = coupling mulitiplier (from table)}$$
-
-Notes:
-
-* add birth death equation
-* affinity diagram
 
 
