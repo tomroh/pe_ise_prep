@@ -156,11 +156,30 @@ $$L_q=\pi_0\bigg(\frac{\rho^c (M-c)(M-c+1)}{2c!}\bigg),\quad \rho=c$$
 $$L_q=\pi_0\bigg(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}\bigg),\quad c=\infty$$
 
 <h5>
-$M/M/1/K\quad Queue$
+$M/M/1/M\quad Queue$
 </h5>
 <hr>
 $$p_0^`(t)=\mu_1p_1(t)-\lambda_0p_0(t) \\
 p_k^`(t)=\lambda_{k-1}p_{k-1}(t)+\mu_{k+1}p_{k+1}(t)-(\lambda_k+\mu_k)p_{k}(t) \quad for \quad k \le K$$
+
+<h5>
+$M/M/C/\infty Queue$
+</h5>
+<hr>
+
+** C = 1 **
+
+$$P_0=1-\rho ,\quad L_q=\frac{\rho^2}{1-\rho}$$
+
+** C = 2 **
+
+$$P_0=\frac{(1-\rho)}{(1=\rho}, \quad L_q = \frac{2\rho^3}{(1-\rho^2)}$$
+
+** C = 3 **
+
+$$P_0 = \frac{2(1-\rho)}{2+4\rho+3\rho^2}, \quad \frac{9\rho^4}{2+2\rho-\rho^2-3\rho^3}$$
+
+
 
 ### Linear Programming
 
@@ -308,6 +327,10 @@ Use the equation above with R not equal to 1.
 $$Q^* = \sqrt{\frac{2C_pD}{h}R\big(\frac{h+z}{z}\big)} \\ z = \textrm{shortage cost}$$
 
 $$M^*=\sqrt{\frac{2C_pD(1-\frac{D}{P})h}{z(h+z)}} \\ M = \textrm{allowed shortage}$$
+
+### Carrying Cost
+
+$$C_T=\frac{hQ}{2}\big(1-\frac{D}{P}\big)+CD+C_p\frac{D}{Q}$$
 
 ### Probabilistic Inventory and Production Models
 
