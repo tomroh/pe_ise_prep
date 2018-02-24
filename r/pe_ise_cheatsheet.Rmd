@@ -187,34 +187,38 @@ $$L_q=\pi_0\bigg(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}\bigg),\quad c=\infty$$
 2. Identify the constraint linear functions
 3. Identify the objective linear function
 
-## Requirements Analysis
-
-## Performance Measures and Applications
-
-## Modeling Techniques
-
-## Process Types
-
-## Model Interpretation
-
-## Model Verification
+### Model Verification
 
 A model has been verified if a range of models produce similar results on the 
 same situation
 
-## Model Validation
+### Model Validation
 
 A model has been validated if a range of results produce similar results on 
 the same situation
 
-## Bottleneck Analysis
+### Bottleneck Analysis
 
 Optimize the process that is the bottleneck, then re-evaulate the bottleneck and
 repeat.
 
-## Value Analysis and Engineering
+### Engineering Economics
 
-## Project Management and Planning
+* Denominator is current value and Numerator is desired conversion
+
+$$\bigg(\frac{F}{P}\bigg)= (1+i)^N$$
+
+$$\bigg(\frac{P}{F}\bigg)= \frac{1}{(1+i)^N}$$
+
+$$\bigg(\frac{F}{A}\bigg)= \frac{(1+i)^N-1}{i}$$
+
+
+$$\bigg(\frac{P}{A}\bigg)= \frac{(1+i)^N-1}{i(1+i)^N}$$
+
+$$\bigg(\frac{A}{F}\bigg)= \frac{i}{(1+i)^N-1}$$
+
+$$\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
+
 
 # Facilities Engineering and Planning
 
@@ -249,7 +253,7 @@ $$min\quad \sum_{i=1}^m w_i(|x-a_1|+|y-b_i|)$$
 The x value is the median of the location x-coordinates.
 The y value is the median of the location y-coordinates.
 
-Chebyshev (simultaneous x and y movement)
+**Chebyshev (simultaneous x and y movement)**
 
 $$max(|x_2-x_1|,|y_2-y_1|)$$
 
@@ -265,22 +269,6 @@ relChart <- data.frame(Code, Closeness, Rank,
 knitr::kable(relChart)
 ```
 
-## Assignment Problem
-
-**Hungarian Procedure:**
-
-1. Subtract the minimum of the row from all elements in the row
-2. Substract the minimum of the column from all elements in the columns
-3. Try to make a valid assignment using the zero elements, if all assigments 
-cannot be made proceed to next step
-4. Cover all zeroes with the minimal number of lines
-5. From each uncovered element subtract the minimum of the uncovered *y*, 
-add *y* to each intersection element. Go to step 3.
-6. Transfer the assignment plan to the original cost table.
-
-## Transportation Problem
-
-$$min \quad \sum_{i=1}^m \sum_{j=1}^nx_{ij}c_{ij} \\ \sum_{j=1}^nx_{ij}=s_i, n = 1, 2, ..., m \\ \sum_{i=1}^mx_{ij}=d_j, m = 1, 2, ..., n$$
 
 
 
@@ -312,19 +300,89 @@ A unit load is collection of items that can be stored in one place as a unit.
 
 ## Forecasting Methods
 
+### Moving Average
+
+$$\hat{d}_t = \frac{\sum_{i=1}^{n}d_{t-i}}{n}$$
+
+### Exponentially Weighted Moving Average
+
+$$\hat{d}_t = \alpha d_{t-1}+(1-\alpha)\hat{d}_{t-1},\quad 0 \leq \alpha( \textrm{smoothing constant})\leq1$$
 ## Production Planning Methods
+
+**Systems to compute Master Production and Ordering Plan**
+
+Material Requirements Planning (MRP)
+
+Manufacturing Resource Planning (MRPII)
 
 ## Engineering Economics
 
-## Costing Systems
+* Denominator is current value and Numerator is desired conversion
+
+$$\bigg(\frac{F}{P}\bigg)= (1+i)^N$$
+
+$$\bigg(\frac{P}{F}\bigg)= \frac{1}{(1+i)^N}$$
+
+$$\bigg(\frac{F}{A}\bigg)= \frac{(1+i)^N-1}{i}$$
+
+
+$$\bigg(\frac{P}{A}\bigg)= \frac{(1+i)^N-1}{i(1+i)^N}$$
+
+$$\bigg(\frac{A}{F}\bigg)= \frac{i}{(1+i)^N-1}$$
+
+$$\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
 
 ## Production Scheduling Methods
 
+**Makespan**
+
+the time it takes from the start of the first job until the end of the last job
+
+**Scheduling Sequence**
+
+1. Earliest Due Date - order jobs by due date
+2. Shortest Processing Time - order jobs by processing time
+3. Critical Ratio - divide time remaining until due date by time left on the 
+machine, order by smallest critical ratio
+
+**Johnson's Optimal Rule for Two Machines**
+
+1. Find the shortest processsing times and arbitrarily break ties
+2. If the shortest processing time is on Machine A, schedule immediately. If the
+shortest processing time is on Machine B, schedule it as late as possible.
+3. Eliminate the last job scheduled on the list and repeat step 1-2.
+
 ## Inventory Management and Control
+
+### Economic Order Quantity
+
+$$Q^*=\sqrt{\frac{2C_pD}{h}R} \\ R = \frac{1}{1-\frac{D}{P}},\quad\textrm{R=1, when replenishment is instaneous} \\ D=\textrm{demand},P=\textrm{production rate},C_p=\textrm{cost per order},h=\textrm{holding cost}$$
+
+### Economic Manufacturing Quantity
+
+Use the equation above with R not equal to 1.
+
+### With shortage costs
+
+$$Q^* = \sqrt{\frac{2C_pD}{h}R\big(\frac{h+z}{z}\big)} \\ z = \textrm{shortage cost}$$
+
+$$M^*=\sqrt{\frac{2C_pD(1-\frac{D}{P})h}{z(h+z)}} \\ M = \textrm{allowed shortage}$$
+
+### Probabilistic Inventory and Production Models
+
+$$F_D(x=y^*)\ge\frac{p-c}{p+h} \\ F_D = \textrm{CDF} \\ x = \textrm{units on hand}, y^*=\textrm{optimal order quantity}, p = \textrm{loss of potential revenue},\\ h = \textrm{loss in value from holding}, c = \textrm{unit acquisition cost}$$
 
 ## Distribution Methods
 
-## Storage and Warehousing Methods
+**Transhipment:**
+
+The intermediary storage
+
+### Transportation Problem
+
+$$min \quad \sum_{i=1}^m \sum_{j=1}^nx_{ij}c_{ij} \\ \sum_{j=1}^nx_{ij}=s_i, n = 1, 2, ..., m \\ \sum_{i=1}^mx_{ij}=d_j, m = 1, 2, ..., n$$
+
+### Storage and Warehousing Methods
 
 1. Dedicated Storage
     * easy to retrieve items
@@ -332,6 +390,7 @@ A unit load is collection of items that can be stored in one place as a unit.
 2. Random Storage
     * more efficient use of space
     * Maximum of the sums of all products
+
     
 ## Transportation Modes
 
@@ -341,6 +400,19 @@ A unit load is collection of items that can be stored in one place as a unit.
 2. Fixed Path
     * conveyor
     * tied to one path
+    
+## Assignment Problem
+
+**Hungarian Procedure:**
+
+1. Subtract the minimum of the row from all elements in the row
+2. Substract the minimum of the column from all elements in the columns
+3. Try to make a valid assignment using the zero elements, if all assigments 
+cannot be made proceed to next step
+4. Cover all zeroes with the minimal number of lines
+5. From each uncovered element subtract the minimum of the uncovered *y*, 
+add *y* to each intersection element. Go to step 3.
+6. Transfer the assignment plan to the original cost table.
 
 # Work Design
 
@@ -399,20 +471,6 @@ A unit load is collection of items that can be stored in one place as a unit.
 ## Root Cause Analysis
 
 
-## Engineering Economics
-
-$$\bigg(\frac{F}{P}\bigg)= (1+i)^N$$
-
-$$\bigg(\frac{P}{F}\bigg)= \frac{1}{(1+i)^N}$$
-
-$$\bigg(\frac{F}{A}\bigg)= \frac{(1+i)^N-1}{i}$$
-
-
-$$\bigg(\frac{P}{A}\bigg)= \frac{(1+i)^N-1}{i(1+i)^N}$$
-
-$$\bigg(\frac{A}{F}\bigg)= \frac{i}{(1+i)^N-1}$$
-
-$$\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
 
 ## Learning Curve
 
@@ -426,38 +484,12 @@ $$T=k\frac{[(x_2+\frac{1}{2})^{n+1}-(x_1+\frac{1}{2})^{n+1}]}{n+1}$$
 
 $$y=k+\frac{(k-s)(x-1)}{1-x_s}$$
 
-# Inventory Management
 
-## Economic Order Quantity
-
-$$Q^*=\sqrt{\frac{2C_pD}{h}R} \\ R = \frac{1}{1-\frac{D}{P}},\quad\textrm{R=1, when replenishment is instaneous} \\ D=\textrm{demand},P=\textrm{production rate},C_p=\textrm{cost per order},h=\textrm{holding cost}$$
-
-## Economic Manufacturing Quantity
-
-Use the equation above with R not equal to 1.
-
-## With shortage costs
-
-$$Q^* = \sqrt{\frac{2C_pD}{h}R\big(\frac{h+z}{z}\big)} \\ z = \textrm{shortage cost}$$
-
-$$M^*=\sqrt{\frac{2C_pD(1-\frac{D}{P})h}{z(h+z)}} \\ M = \textrm{allowed shortage}$$
 ## Probabilistic Inventory Models
 
 
 
-## Scheduling
 
-1. Earliest Due Date - order jobs by due date
-2. Shortest Processing Time - order jobs by processing time
-3. Critical Ratio - divide time remaining until due date by time left on the 
-machine, order by smallest critical ratio
-
-**Johnson's Optimal Rule for Two Machines**
-
-1. Find the shortest processsing times and arbitrarily break ties
-2. If the shortest processing time is on Machine A, schedule immediately. If the
-shortest processing time is on Machine B, schedule it as late as possible.
-3. Eliminate the last job scheduled on the list and repeat step 1-2.
 
 # Statistics
 
@@ -527,17 +559,6 @@ anovaTable <- data.frame(SS,
                          "F" = fstat)
 knitr::kable(anovaTable)
 ```
-
-
-# Forecasting
-
-## Moving Average
-
-$$\hat{d}_t = \frac{\sum_{i=1}^{n}d_{t-i}}{n}$$
-
-## Exponentially Weighted Moving Average
-
-$$\hat{d}_t = \alpha d_{t-1}+(1-\alpha)\hat{d}_{t-1},\quad 0 \leq \alpha( \textrm{smoothing constant})\leq1$$
 
 # Quality Control
 
