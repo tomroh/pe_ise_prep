@@ -1,12 +1,14 @@
 ---
-title: "PE ISE Exam Cheat Sheet"
+title: "PE ISE Reference Sheet"
 author: "Thomas Roh"
 date: "January 20, 2018"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, fig.align = 'center')
+knitr::opts_chunk$set(echo = FALSE, 
+                      fig.align = 'center', 
+                      fig.height = 2)
 library(ggplot2)
 library(data.table)
 library(DiagrammeR)
@@ -19,7 +21,9 @@ theme_set(trstyles::theme_tr())
 
 ### Cause-Effect Diagram (Fishbone)
 
-![](../img/fishbone.png)
+<center>
+![](../img/fishbone.png){height="3in"}
+</center>
 
 ### Pareto Analysis
 
@@ -86,8 +90,9 @@ The operation process chart only has Operations and Inspections.
 
 The flow process chart forces a more detailed look at a system.
 
-![ASME standard set of process chart symbols](../img/flow_process_symbols.png)
-
+<center>
+![ASME standard set of process chart symbols](../img/flow_process_symbols.png){height="1.5in"}
+</center>
 
 ### Affinity Diagram
 
@@ -159,25 +164,28 @@ $$L_q=\pi_0\bigg(\frac{\rho^{c+1}}{(c-1)!(c-\rho)^2}\bigg),\quad c=\infty$$
 $M/M/1/M\quad Queue$
 </h5>
 <hr>
+
+**State probability differential equations:**
+
 $$p_0^`(t)=\mu_1p_1(t)-\lambda_0p_0(t) \\
 p_k^`(t)=\lambda_{k-1}p_{k-1}(t)+\mu_{k+1}p_{k+1}(t)-(\lambda_k+\mu_k)p_{k}(t) \quad for \quad k \le K$$
 
 <h5>
-$M/M/C/\infty Queue$
+$M/M/C/\infty \quad Queue$
 </h5>
 <hr>
 
-** C = 1 **
+**C = 1:**
 
 $$P_0=1-\rho ,\quad L_q=\frac{\rho^2}{1-\rho}$$
 
-** C = 2 **
+**C = 2:**
 
 $$P_0=\frac{(1-\rho)}{(1=\rho}, \quad L_q = \frac{2\rho^3}{(1-\rho^2)}$$
 
-** C = 3 **
+**C = 3:**
 
-$$P_0 = \frac{2(1-\rho)}{2+4\rho+3\rho^2}, \quad \frac{9\rho^4}{2+2\rho-\rho^2-3\rho^3}$$
+$$P_0 = \frac{2(1-\rho)}{2+4\rho+3\rho^2}, \quad L_q \frac{9\rho^4}{2+2\rho-\rho^2-3\rho^3}$$
 
 
 
@@ -276,8 +284,6 @@ Manufacturing Resource Planning (MRPII)
 
 ## Engineering Economics
 
-* Denominator is current value and Numerator is desired conversion
-
 $$\bigg(\frac{F}{P}\bigg)= (1+i)^N$$
 
 $$\bigg(\frac{P}{F}\bigg)= \frac{1}{(1+i)^N}$$
@@ -290,7 +296,7 @@ $$\bigg(\frac{P}{A}\bigg)= \frac{(1+i)^N-1}{i(1+i)^N}$$
 $$\bigg(\frac{A}{F}\bigg)= \frac{i}{(1+i)^N-1}$$
 
 $$\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
-*Denominator is current value and Numerator is desired conversion
+*Denominator is current value and Numerator is desired conversion*
 
 ## Production Scheduling Methods
 
@@ -481,7 +487,7 @@ $$R = 1-\prod_{i=1}^n (1-P_i) $$
 
 $$z=\frac{x-\mu}{\sigma}$$
 
-**Confidence Interval (Two-tailed)**
+**Confidence Interval**
 
 $$\bar{x}\pm\frac{z_{\alpha/2} \sigma}{\sqrt{n}}$$
 
@@ -495,7 +501,7 @@ $$z_0=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{
 
 $$t=\frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}}$$
 
-**Confidence Interval(Two-tailed)**
+**Confidence Interval**
 
 $$\bar{x}\pm\frac{t_{\alpha/2,n-1}s}{\sqrt{n}}$$
 
