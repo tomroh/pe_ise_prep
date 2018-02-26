@@ -167,8 +167,8 @@ $M/M/1/M\quad Queue$
 
 **State probability differential equations:**
 
-$$p_0^`(t)=\mu_1p_1(t)-\lambda_0p_0(t) \\
-p_k^`(t)=\lambda_{k-1}p_{k-1}(t)+\mu_{k+1}p_{k+1}(t)-(\lambda_k+\mu_k)p_{k}(t) \quad for \quad k \le K$$
+$$p'_0(t)=\mu_1p_1(t)-\lambda_0p_0(t) \\
+p'_k(t)=\lambda_{k-1}p_{k-1}(t)+\mu_{k+1}p_{k+1}(t)-(\lambda_k+\mu_k)p_{k}(t) \quad for \quad k \le K$$
 
 <h5>
 $M/M/C/\infty \quad Queue$
