@@ -581,3 +581,37 @@ knitr::kable(anovaTable)
 ```
 
 
+
+
+$$
+\begin{array}{c|c|c|c}
+\text{Discrete Distributions}& \text{pmf} & \text{cdf} & \text{mean} & \text{variance} & \text{parameters} \\
+\hline
+\text{Binomial} & 
+\binom{n}{k}p^k(1-p)^{n-k} & 
+\sum_{i=0}^{\lfloor k \rfloor}\binom{n}{i}p^i(1-p)^{n-i} & 
+np & 
+np(1-p) &
+\text{n = number of trials, p = success probability}  \\ \hline
+\text{Discrete Uniform} & 
+\frac{1}{b-a+1} & 
+\frac{\lfloor k \rfloor - a + 1}{b-a+1} & 
+\frac{a+b}{2} & 
+\frac{(b-a+1)^2-1}{12} & 
+\text{a = minimum, b = maximum} \\ \hline
+\text{Poisson} & 
+\frac{\lambda^k e^{-\lambda}}{k!} & 
+e^{-\lambda}\sum_{i=0}^{\lfloor k \rfloor}\frac{\lambda^i}{i!} & 
+\lambda & 
+\lambda & 
+\lambda\text{ = rate} \\ \hline
+\text{Geometric} & 
+p(1-p)^{k-1} & 
+1-(1-p)^k & 
+\frac{1}{p} & 
+\frac{1-p}{p^2} & 
+\text{k = number of trials, p = success probability}
+\end{array}
+$$
+
+
