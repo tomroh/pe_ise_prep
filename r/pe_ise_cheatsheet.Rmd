@@ -546,13 +546,15 @@ $$R^2=\frac{SSR}{SST} = 1-\frac{SSE}{SST}$$
 
 ## ANOVA
 
-Given treatment factors A & B:
-
-$$SST=SSA+SSB+SSAB+SSE$$
+$$SSA+SSE=SST$$
 
 ### ANOVA Table
 
 **One-Way**
+
+Given Treatment A:
+
+$$SSA+SSE=SST$$
 
 ```{r oneway ANOVA}
 SS <- c('SSA', 'SSE', 'SST')
@@ -568,6 +570,10 @@ knitr::kable(anovaTable)
 
 **Two-Way**
 
+Given treatment factors A & B:
+
+$$SST=SSA+SSB+SSAB+SSE$$
+
 ```{r twoway ANOVA}
 SS <- c('SSA', 'SSB', 'SSAB', 'SSE', 'SST')
 df <- c('a-1', 'b-1', '(a-1)(b-1)', 'ab(n-1)', 'abn-1')
@@ -580,12 +586,13 @@ anovaTable <- data.frame(SS,
 knitr::kable(anovaTable)
 ```
 
+## Distributions
 
-
+### Discrete
 
 $$
 \begin{array}{c|c|c|c}
-\text{Discrete Distributions}& \text{pmf} & \text{cdf} & \text{mean} & \text{variance} & \text{parameters} \\
+\text{Distribution}& \text{pmf} & \text{cdf} & \text{mean} & \text{variance} & \text{parameters} \\
 \hline
 \text{Binomial} & 
 \binom{n}{k}p^k(1-p)^{n-k} & 
@@ -614,4 +621,4 @@ p(1-p)^{k-1} &
 \end{array}
 $$
 
-
+### Continuous
