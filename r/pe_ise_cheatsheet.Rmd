@@ -676,9 +676,10 @@ k\theta^2 &
  & 
  \\ \hline
 \text{Lognormal} & 
+\frac{1}{x\sigma\sqrt{2\pi}}e^{\frac{(ln x-\mu)^2}{2\sigma^2}} & 
  & 
- & 
- & 
- & 
+e^{\mu+\frac{\sigma^2}{2}} & 
+[e^{\sigma^2}-1] e^{2\mu+\sigma^2} & 
+\mu\text{ = mean, } \sigma^2 \text{ = variance}
 \end{array}
 $$
