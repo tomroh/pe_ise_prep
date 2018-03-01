@@ -625,7 +625,7 @@ $$
 
 $$
 \begin{array}{c|c|c|c}
-\text{Distribution}& \text{pmf} & \text{cdf} & \text{mean} & \text{variance} & \text{parameters} \\
+\text{Distribution}& \text{pdf} & \text{cdf} & \text{mean} & \text{variance} & \text{parameters} \\
 \hline
 \text{Uniform} & 
 \frac{1}{b-a} & 
@@ -646,26 +646,32 @@ $$
 \sigma^2 & 
 \mu \text{ = mean, } \sigma^2 \text{ = variance} \\ \hline
 \text{PERT beta} & 
- & 
- & 
+undefined & 
+undefined & 
 \frac{a+4m+b}{6} & 
 \frac{(b-a)^2}{36} & 
- \\ \hline
+\text{a = 1st percentile, b = 99th percentile, m = mode} \\ \hline
 \text{Triangular} & 
- & 
- & 
-\frac{a+m+b}{3} & 
-\frac{a^2+m^2+b^2-ma-ab-mb}{18} & 
- \\ \hline
+\begin{cases}
+\frac{(x-a)^2}{(b-a)(c-a)},\quad a\le x\le c \\
+1-\frac{(b-x)^2}{(b-a)(b-c)},\quad c<x\le b
+\end{cases} &
+\begin{cases}
+\frac{(x-a)^2}{(b-a)(c-a)},\quad a\le x\le c \\
+1-\frac{(b-x)^2}{(b-a)(b-c)}, \quad c<x\le b
+\end{cases} & 
+\frac{a+b+c}{3} & 
+\frac{a^2+m^2+b^2-ca-ab-cb}{18} & 
+\text{a = minimum, b = maximum, c = mode} \\ \hline
 \text{Gamma} & 
- & 
- & 
- & 
- & 
- \\ \hline
+\frac{\lambda(\lambda x)^{n-1}}{(n-1)!}e^{-\lambda x} & 
+1-e^{-\lambda x}\sum_{i=0}^{n-1}\frac{(\lambda x)^i}{i!} & 
+k\theta & 
+k\theta^2 & 
+\text{k = shape, } \theta \text{ = scale} \\ \hline
 \text{Weibull} & 
- & 
- & 
+\frac{k}{\lambda}\binom{x}{\lambda}^{k-1}e^{-{(\frac{x}{\lambda}})^k} &
+1-e^{-(\frac{x}{\lambda})^k} & 
  & 
  & 
  \\ \hline
