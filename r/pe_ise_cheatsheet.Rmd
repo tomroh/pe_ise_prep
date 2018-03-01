@@ -641,7 +641,7 @@ $$
 \lambda \text{ = rate} \\ \hline
 \text{Normal} & 
 \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} & 
-\frac{1}{2} & 
+\frac{1}{2}\big[1+erf\big(\frac{x-\mu}{\sigma\sqrt{2}}\big)\big] & 
 \mu & 
 \sigma^2 & 
 \mu \text{ = mean, } \sigma^2 \text{ = variance} \\ \hline
@@ -664,11 +664,11 @@ undefined &
 \frac{a^2+m^2+b^2-ca-ab-cb}{18} & 
 \text{a = minimum, b = maximum, c = mode} \\ \hline
 \text{Gamma} & 
-\frac{\lambda(\lambda x)^{n-1}}{(n-1)!}e^{-\lambda x} & 
-1-e^{-\lambda x}\sum_{i=0}^{n-1}\frac{(\lambda x)^i}{i!} & 
-k\theta & 
-k\theta^2 & 
-\text{k = shape, } \theta \text{ = scale} \\ \hline
+\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x} & 
+\frac{1}{\Gamma(\alpha)}\gamma(\alpha,\beta x) & 
+\alpha\beta & 
+\alpha\beta^2 & 
+\alpha \text{ = shape, } \beta \text{ = scale} \\ \hline
 \text{Weibull} & 
 \frac{k}{\lambda}\binom{x}{\lambda}^{k-1}e^{-{(\frac{x}{\lambda}})^k} &
 1-e^{-(\frac{x}{\lambda})^k} & 
@@ -677,9 +677,13 @@ k\theta^2 &
  \\ \hline
 \text{Lognormal} & 
 \frac{1}{x\sigma\sqrt{2\pi}}e^{\frac{(ln x-\mu)^2}{2\sigma^2}} & 
- & 
+\frac{1}{2}+ \frac{1}{2} erf \big[ \frac{ln x-\mu}{\sigma\sqrt{2}}\big]& 
 e^{\mu+\frac{\sigma^2}{2}} & 
 [e^{\sigma^2}-1] e^{2\mu+\sigma^2} & 
 \mu\text{ = mean, } \sigma^2 \text{ = variance}
 \end{array}
 $$
+
+
+## Factors for Control Charts
+
