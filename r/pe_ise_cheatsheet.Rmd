@@ -747,3 +747,63 @@ n & A & A_2 & A_3 & c_4 & B_3 & B_4 & B_5 & B_6 & d_2 & \frac{1}{d_2} & d_3 & D_
 \end{array}
 $$
 
+## Normal Distribution
+
+```{r}
+normalTable <- matrix(round(pnorm(seq(0, 3.09, by = .01)), 4), ncol = 10)
+colnames(normalTable) <- seq(0, .09, by = .01)
+rownames(normalTable) <- sprintf("%01.1f", seq(0, 3, by = .1))
+knitr::kable(normalTable)
+```
+
+## t-Distribution
+
+```{r}
+alpha <- c(.1, .05, .025, .01, .005)
+v <- c(seq(1, 30, by = 1), Inf)
+tTable <- sapply((1-alpha), function(x) qt(x, df = v))
+colnames(tTable) <- alpha
+rownames(tTable) <- v
+knitr::kable(tTable, row.names = TRUE)
+```
+<h2>
+$$\chi^2 \quad Distribution$$
+</h2>
+
+```{r}
+alpha <- c(.995, .99, .975, .95, .9, .75, .5, .25, .1, .05, .025, .01, .005, .001)
+v <- seq(1, 100, by = 1)
+chiTable <- sapply((1-alpha), function(x) round(qchisq(x, df = v), 2))
+colnames(chiTable) <- alpha
+rownames(chiTable) <- v
+knitr::kable(chiTable, row.names = TRUE)
+```
+
+<h2>
+$$
+F(v_1, v_2)
+$$
+</h2>
+
+### 95th Percentiles
+
+```{r}
+v1 <- c(seq(1, 10, by = 1), 12, 15, 20, 24, 30, 40, 60, 120, Inf)
+v2 <- v1
+fTable95 <- sapply(v1, function(x) signif(qf(.95, x, v2), 3))
+colnames(fTable95) <- v1
+rownames(fTable95) <- v2
+knitr::kable(fTable95, row.names = TRUE)
+```
+
+### 99th Percentiles
+
+```{r}
+v1 <- c(seq(1, 10, by = 1), 12, 15, 20, 24, 30, 40, 60, 120, Inf)
+v2 <- v1
+fTable99 <- sapply(v1, function(x) signif(qf(.99, x, v2), 3))
+colnames(fTable99) <- v1
+rownames(fTable99) <- v2
+knitr::kable(fTable99, row.names = TRUE)
+```
+
