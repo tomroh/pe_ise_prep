@@ -749,7 +749,7 @@ print(normalTable,
 $t \text{ Distribution}$
 </h2>
 
-```{r results='asis'}
+```{r t distribution, results='asis'}
 alpha <- c(.1, .05, .025, .01, .005)
 v <- c(seq(1, 30, by = 1), Inf)
 tTable <- sapply((1-alpha), function(x) qt(x, df = v))
@@ -758,7 +758,7 @@ tTable <- data.frame("$v \\big\\backslash \\alpha$" = paste0("**", v, "**"),
                      tTable,
                      stringsAsFactors = FALSE,
                      check.names = FALSE)
-
+tTable[[1]][tTable[[1]] == "**Inf**"] <- "$\\infty$" 
 tTable <- xtable(tTable,
                       caption = "Table 3: Percentiles of the *t* Distribution",
                       align = rep("c", ncol(tTable)+1),
@@ -813,12 +813,12 @@ v1 <- c(seq(1, 10, by = 1), 12, 15, 20, 24, 30, 40, 60, 120, Inf)
 v2 <- v1
 fTable95 <- sapply(v1, function(x) round(qf(.95, x, v2), 2))
 colnames(fTable95) <- v1
-rownames(fTable95) <- v2
+colnames(fTable95)[colnames(fTable95) == 'Inf'] <- "$\\infty$"
 fTable95 <- data.frame("$v2 \\big\\backslash v1$" = paste0("**", v2, "**"),
                        fTable95,
                        stringsAsFactors = FALSE,
                        check.names = FALSE)
-                       
+fTable95[[1]][fTable95[[1]] == "**Inf**"] <- "$\\infty$"                        
 fTable95 <- xtable(fTable95,
                       caption = "Table 5: 95th Percentiles of the $F(v_1,v_2)$",
                       align = rep("c", ncol(fTable95)+1))
@@ -842,24 +842,21 @@ v2 <- v1
 fTable99 <- sapply(v1, function(x) sprintf("%.2f", round(qf(.99, x, v2), 2)))
 fTable99[1, ] <- sprintf("%.0f", as.numeric(fTable99[1, ]), 0)
 colnames(fTable99) <- v1
-rownames(fTable99) <- v2
+colnames(fTable99)[colnames(fTable99) == 'Inf'] <- "$\\infty$"
 fTable99 <- data.frame("$v2 \\big\\backslash v1$" = paste0("**", v2, "**"),
                        fTable99,
                        stringsAsFactors = FALSE,
                        check.names = FALSE)
-          
+fTable99[[1]][fTable99[[1]] == "**Inf**"] <- "$\\infty$"      
 fTable99 <- xtable(fTable99,
                       caption = "Table 6: 99th Percentiles of the $F(v_1,v_2)$",
                       align = rep("c", ncol(fTable99)+1))
 
 print(fTable99, 
       type = 'html',
-      #floating = FALSE,
-      #tabular.environment="longtable",
       include.rownames = FALSE,
       caption.placement = "top",
       sanitize.colnames.function = function(x){x},
       html.table.attributes = list("border='1' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
       floating.environment = "sidewaystable")
 ```
-
