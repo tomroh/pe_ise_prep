@@ -53,37 +53,6 @@ ggplot(itemTable) +
 
 ```
 
-### Histogram
-
-A bar chart where values are binned into intervals and the count or frequency is
-the height of the bars.
-
-```{r}
-histData <- rnorm(10000, 100, 10)
-qplot(histData, geom = 'histogram', binwidth = 10) +
-  labs(title = 'Normal Distribution Sample Data (100, 10)',
-       x = 'x')
-```
-
-### Scatterplot
-
-A scatterplot is two numeric variables plotted against each other. Often used to 
-visually determine if there is correlation.
-
-```{r}
-
-spData <- rnorm(1000, 5, 5)
-qplot(spData, spData + rnorm(1000, 0, 3)) +
-  labs(title = 'Correlation',
-       x = 'x',
-       y = 'y')
-
-qplot(spData, rnorm(1000, 5, 5)) +
-  labs(title = 'No correlation',
-       x = 'x',
-       y = 'y')
-```
-
 ### Operation Process Chart
 
 The operation process chart only has Operations and Inspections.
@@ -255,7 +224,7 @@ $$max(|x_2-x_1|,|y_2-y_1|)$$
 
 ```{r relationship chart}
 Code <- c('A', 'E', 'I', 'O', 'U', 'X')
-Closeness <- c('Absolutely Necessar', 'Especially Important', 'Important',
+Closeness <- c('Absolutely Necessary', 'Especially Important', 'Important',
                'Ordinary Closeness', 'Unimportant', 'Not desirable')
 Rank <- c(.95, .85, .7, .5, 0, "-")
 relChart <- data.frame(Code, Closeness, Rank,
@@ -285,18 +254,15 @@ Manufacturing Resource Planning (MRPII)
 
 ## Engineering Economics
 
-$$\bigg(\frac{F}{P}\bigg)= (1+i)^N$$
+$$\bigg(\frac{F}{P}\bigg)= (1+i)^N, \quad 
+\bigg(\frac{P}{F}\bigg)= \frac{1}{(1+i)^N} 
+\\
+\bigg(\frac{F}{A}\bigg)= \frac{(1+i)^N-1}{i}, \quad
+\bigg(\frac{P}{A}\bigg)= \frac{(1+i)^N-1}{i(1+i)^N} 
+\\
+\bigg(\frac{A}{F}\bigg)= \frac{i}{(1+i)^N-1}, \quad
+\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
 
-$$\bigg(\frac{P}{F}\bigg)= \frac{1}{(1+i)^N}$$
-
-$$\bigg(\frac{F}{A}\bigg)= \frac{(1+i)^N-1}{i}$$
-
-
-$$\bigg(\frac{P}{A}\bigg)= \frac{(1+i)^N-1}{i(1+i)^N}$$
-
-$$\bigg(\frac{A}{F}\bigg)= \frac{i}{(1+i)^N-1}$$
-
-$$\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
 *Denominator is current value and Numerator is desired conversion
 
 ## Production Scheduling Methods
@@ -550,8 +516,6 @@ $$R^2=\frac{SSR}{SST} = 1-\frac{SSE}{SST}$$
 
 $$SSA+SSE=SST$$
 
-### ANOVA Table
-
 **One-Way**
 
 Given Treatment A:
@@ -694,7 +658,9 @@ $$
 
 <p style="page-break-before: always">
 
-## Factors for Control Charts
+<h2>
+$\text{Factors for Control Charts}$
+</h2>
 
 ```{r fcc, echo = FALSE, results='asis'}
 ccf <- read.csv('../data/control_chart_factors.csv')
@@ -718,7 +684,9 @@ print(ccf,
 
 <p style="page-break-before: always">
 
-## Normal Distribution
+<h2>
+$\text{Normal Distribution}$
+</h2>
 
 ```{r results='asis'}
 normalTable <- matrix(round(pnorm(seq(0, 3.49, by = .01)), 4), 
@@ -781,7 +749,7 @@ $\chi^2 \text{ Distribution}$
 
 ```{r chi squared table, results = 'asis', echo=FALSE}
 alpha <- c(.995, .99, .975, .95, .9, .75, .5, .25, .1, .05, .025, .01, .005, .001)
-v <- seq(1, 100, by = 1)
+v <- c(seq(1, 25, by = 1), seq(30, 100, by = 10))
 chiTable <- sapply((1-alpha), function(x) round(qchisq(x, df = v), 2))
 colnames(chiTable) <- alpha
 chiTable <- data.frame("$v \\big\\backslash \\alpha$" = paste0("**", v, "**"),
@@ -833,8 +801,6 @@ print(fTable95,
       html.table.attributes = list("border='1' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
       floating.environment = "sidewaystable")
 ```
-
-<p style="page-break-before: always">
 
 ```{r 99th F Dist, results = 'asis', echo = FALSE}
 v1 <- c(seq(1, 10, by = 1), 12, 15, 20, 24, 30, 40, 60, 120, Inf)
