@@ -168,8 +168,8 @@ $M/M/1/M\quad Queue$
 <hr>
 **State probability differential equations:**
 
-$$p'_0(t)=\mu_1p_1(t)-\lambda_0p_0(t) \\
-p'_k(t)=\lambda_{k-1}p_{k-1}(t)+\mu_{k+1}p_{k+1}(t)-(\lambda_k+\mu_k)p_{k}(t) \quad for \quad k \le K$$
+$$p_0^\prime(t)=\mu_1p_1(t)-\lambda_0p_0(t) \\
+p_k^\prime(t)=\lambda_{k-1}p_{k-1}(t)+\mu_{k+1}p_{k+1}(t)-(\lambda_k+\mu_k)p_{k}(t) \quad for \quad k \le K$$
 
 <h5>
 $M/M/C/\infty \quad Queue$
@@ -703,7 +703,7 @@ names(ccf)[names(ccf) %in% "invd_2"] <- "d_2^{-1}"
 names(ccf) <- paste0("$", names(ccf), "$")
 
 ccf <- xtable(ccf,
-              caption = "Table 1:",
+              caption = "Table 1: Factors for Calculating Limits for Variable Control Charts",
                       align = rep("c", ncol(ccf)+1),
                       digits = 3)
 print(ccf, 
@@ -721,13 +721,12 @@ print(ccf,
 ## Normal Distribution
 
 ```{r results='asis'}
-normalTable <- matrix(round(pnorm(seq(0, 3.09, by = .01)), 4), 
+normalTable <- matrix(round(pnorm(seq(0, 3.49, by = .01)), 4), 
                       ncol = 10,
                       byrow = TRUE)
 colnames(normalTable) <- seq(0, .09, by = .01)
-rownames(normalTable) <- sprintf("%01.1f", seq(0, 3, by = .1))
-z <- row.names(normalTable)
-normalTable <- data.frame(z = paste0("**", z, "**"),
+z <- sprintf("%01.1f", seq(0, 3.4, by = .1))
+normalTable <- data.frame("$z$" = paste0("**", z, "**"),
                           normalTable,
                           stringsAsFactors = FALSE)
 colnames(normalTable) <- c("z", seq(0, .09, by = .01))
@@ -746,22 +745,22 @@ print(normalTable,
 
 <p style="page-break-before: always">
 
-$$v \bigg \\ \alpha$$
-
-## t-Distribution
+<h2>
+$t \text{ Distribution}$
+</h2>
 
 ```{r results='asis'}
 alpha <- c(.1, .05, .025, .01, .005)
 v <- c(seq(1, 30, by = 1), Inf)
 tTable <- sapply((1-alpha), function(x) qt(x, df = v))
 colnames(tTable) <- alpha
-tTable <- data.frame(v = paste0("**", v, "**"),
+tTable <- data.frame("$v \\big\\backslash \\alpha$" = paste0("**", v, "**"),
                      tTable,
                      stringsAsFactors = FALSE,
                      check.names = FALSE)
 
 tTable <- xtable(tTable,
-                      caption = "Table 3:",
+                      caption = "Table 3: Percentiles of the *t* Distribution",
                       align = rep("c", ncol(tTable)+1),
                       digits = 4)
 print(tTable, 
@@ -777,7 +776,7 @@ print(tTable,
 <p style="page-break-before: always">
 
 <h2>
-$$\chi^2 \quad Distribution$$
+$\chi^2 \text{ Distribution}$
 </h2>
 
 ```{r chi squared table, results = 'asis', echo=FALSE}
@@ -785,32 +784,27 @@ alpha <- c(.995, .99, .975, .95, .9, .75, .5, .25, .1, .05, .025, .01, .005, .00
 v <- seq(1, 100, by = 1)
 chiTable <- sapply((1-alpha), function(x) round(qchisq(x, df = v), 2))
 colnames(chiTable) <- alpha
-chiTable <- data.frame(v = paste0("**", v, "**"),
+chiTable <- data.frame("$v \\big\\backslash \\alpha$" = paste0("**", v, "**"),
                        chiTable,
                        stringsAsFactors = FALSE,
                        check.names = FALSE)
 chiTable <- xtable(chiTable,
-                      caption = "Table 4:",
+                      caption = "Table 4: Percentiles of the $\\chi^2$ Distribution",
                       align = rep("c", ncol(chiTable)+1))
 
 print(chiTable, 
       type = 'html',
-      #floating = FALSE,
-      #tabular.environment="longtable",
       include.rownames = FALSE,
       caption.placement = "top",
       sanitize.colnames.function = function(x){x},
-      html.table.attributes = list("border='1' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
-      floating.environment = "sidewaystable")
+      html.table.attributes = list("border='1' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"))
 ```
 
 
 <p style="page-break-before: always">
 
 <h2>
-$$
-F(v_1, v_2) \text{ Distribution}
-$$
+$F(v_1, v_2) \text{ Distribution}$
 </h2>
 
 
@@ -820,13 +814,13 @@ v2 <- v1
 fTable95 <- sapply(v1, function(x) round(qf(.95, x, v2), 2))
 colnames(fTable95) <- v1
 rownames(fTable95) <- v2
-fTable95 <- data.frame(v2 = paste0("**", v2, "**"),
+fTable95 <- data.frame("$v2 \\big\\backslash v1$" = paste0("**", v2, "**"),
                        fTable95,
                        stringsAsFactors = FALSE,
                        check.names = FALSE)
                        
 fTable95 <- xtable(fTable95,
-                      caption = "Table 4:",
+                      caption = "Table 5: 95th Percentiles of the $F(v_1,v_2)$",
                       align = rep("c", ncol(fTable95)+1))
 
 print(fTable95, 
@@ -845,16 +839,17 @@ print(fTable95,
 ```{r 99th F Dist, results = 'asis', echo = FALSE}
 v1 <- c(seq(1, 10, by = 1), 12, 15, 20, 24, 30, 40, 60, 120, Inf)
 v2 <- v1
-fTable99 <- sapply(v1, function(x) round(qf(.99, x, v2), 2))
+fTable99 <- sapply(v1, function(x) sprintf("%.2f", round(qf(.99, x, v2), 2)))
+fTable99[1, ] <- sprintf("%.0f", as.numeric(fTable99[1, ]), 0)
 colnames(fTable99) <- v1
 rownames(fTable99) <- v2
-fTable99 <- data.frame(v2 = paste0("**", v2, "**"),
+fTable99 <- data.frame("$v2 \\big\\backslash v1$" = paste0("**", v2, "**"),
                        fTable99,
                        stringsAsFactors = FALSE,
                        check.names = FALSE)
-                       
+          
 fTable99 <- xtable(fTable99,
-                      caption = "Table 4:",
+                      caption = "Table 6: 99th Percentiles of the $F(v_1,v_2)$",
                       align = rep("c", ncol(fTable99)+1))
 
 print(fTable99, 
