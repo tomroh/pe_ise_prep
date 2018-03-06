@@ -4,12 +4,7 @@ author: "Thomas Roh"
 date: "January 20, 2018"
 output:
   html_document: default
-  pdf_document: default
 ---
-
-th {
-  font-weight: normal;
-}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, 
