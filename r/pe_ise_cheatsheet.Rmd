@@ -4,6 +4,7 @@ author: "Thomas Roh"
 date: "January 20, 2018"
 output:
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -556,40 +557,65 @@ knitr::kable(anovaTable)
 
 ## Distributions
 
-### Discrete
+```{r results='asis'}
+discrete <- c("Binomial", 
+              "Discrete Uniform", 
+              "Poisson", 
+              "Geometric",
+              "Negative Binomial")
+pmf <- c("$\\binom{n}{x}p^x(1-p)^{n-x}$", 
+         "$\\frac{1}{b-a+1}$", 
+         "$\\frac{\\lambda^x e^{-\\lambda}}{x!}$", 
+         "$p(1-p)^{x}$",
+         "$\\binom{k+x-1}{x}p^k(1-p)^x$")
+dcdf <- c("$\\sum_{i=0}^{\\lfloor x \\rfloor}\\binom{n}{i}p^i(1-p)^{n-i}$", 
+          "$\\frac{\\lfloor x \\rfloor - a + 1}{b-a+1}$", 
+          "$e^{-\\lambda}\\sum_{i=0}^{\\lfloor x \\rfloor}\\frac{\\lambda^i}{i!}$", 
+          "$1-(1-p)^{x+1}$",
+          "$-$") 
+dmean <- c("$np$", 
+           "$\\frac{a+b}{2}$", 
+           "$\\lambda$", 
+           "$\\frac{1-p}{p}$",
+           "$\\frac{k(1-p)}{p}$")
+dvariance <- c("$np(1-p)$", 
+               "$\\frac{(b-a+1)^2-1}{12}$", 
+               "$\\lambda$", 
+               "$\\frac{1-p}{p^2}$",
+               "$\\frac{k(1-p)}{p^2}$")
+dparameters <- c("$\\text{n = number of trials} \\\\ \\text{p = success probability}$",
+                 "$\\text{a = minimum} \\\\ \\text{b = maximum}$", 
+                 "$\\lambda\\text{ = rate}$", 
+                 "$\\text{k = number of trials} \\\\ \\text{p = success probability}$",
+                 "$\\text{k = number of successes}\\\\ \\text{p = success probability}$")
+discreteColNames <- c("Distribution", 
+                      "pmf", 
+                      "cdf", 
+                      "mean", 
+                      "variance", 
+                      "parameters")
+discreteDistr <- data.frame(discrete,
+                            pmf,
+                            dcdf,
+                            dmean,
+                            dvariance,
+                            dparameters,
+                            stringsAsFactors = FALSE)
+names(discreteDistr) <- discreteColNames
 
-$$
-\begin{array}{|c|c|c|c|}
-\hline
-\text{Distribution}& \text{pmf} & \text{cdf} & \text{mean} & \text{variance} & \text{parameters} \\
-\hline
-\text{Binomial} & 
-\binom{n}{k}p^k(1-p)^{n-k} & 
-\sum_{i=0}^{\lfloor k \rfloor}\binom{n}{i}p^i(1-p)^{n-i} & 
-np & 
-np(1-p) &
-\text{n = number of trials, p = success probability}  \\ \hline
-\text{Discrete Uniform} & 
-\frac{1}{b-a+1} & 
-\frac{\lfloor k \rfloor - a + 1}{b-a+1} & 
-\frac{a+b}{2} & 
-\frac{(b-a+1)^2-1}{12} & 
-\text{a = minimum, b = maximum} \\ \hline
-\text{Poisson} & 
-\frac{\lambda^k e^{-\lambda}}{k!} & 
-e^{-\lambda}\sum_{i=0}^{\lfloor k \rfloor}\frac{\lambda^i}{i!} & 
-\lambda & 
-\lambda & 
-\lambda\text{ = rate} \\ \hline
-\text{Geometric} & 
-p(1-p)^{k-1} & 
-1-(1-p)^k & 
-\frac{1}{p} & 
-\frac{1-p}{p^2} & 
-\text{k = number of trials, p = success probability} \\
-\hline
-\end{array}
-$$
+discreteDistr <- xtable(discreteDistr,
+                        caption = "Discrete",
+                        align = rep("c", ncol(discreteDistr)+1))
+
+print(discreteDistr, 
+      type = 'html',
+      floating = TRUE,
+      include.rownames = FALSE,
+      caption.placement = "top",
+      sanitize.text.function = function(x) {x},
+      html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
+      floating.environment = "sidewaystable")
+```
 
 ### Continuous
 
@@ -678,7 +704,7 @@ print(ccf,
       include.rownames = FALSE,
       caption.placement = "top",
       sanitize.colnames.function = function(x){x},
-      html.table.attributes = list("border='1' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"))
+      html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"))
 ```
 
 
@@ -707,7 +733,7 @@ print(normalTable,
       floating = TRUE,
       include.rownames = FALSE,
       caption.placement = "top",
-      html.table.attributes = list("border='1' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
+      html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
       floating.environment = "sidewaystable")
 ```
 
@@ -737,7 +763,7 @@ print(tTable,
       include.rownames = FALSE,
       caption.placement = "top",
       sanitize.colnames.function = function(x){x},
-      html.table.attributes = list("border='1' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
+      html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
       floating.environment = "sidewaystable")
 ```
 
@@ -765,7 +791,7 @@ print(chiTable,
       include.rownames = FALSE,
       caption.placement = "top",
       sanitize.colnames.function = function(x){x},
-      html.table.attributes = list("border='1' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"))
+      html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"))
 ```
 
 
@@ -782,7 +808,7 @@ v2 <- v1
 fTable95 <- sapply(v1, function(x) round(qf(.95, x, v2), 2))
 colnames(fTable95) <- v1
 colnames(fTable95)[colnames(fTable95) == 'Inf'] <- "$\\infty$"
-fTable95 <- data.frame("$v2 \\big\\backslash v1$" = paste0("**", v2, "**"),
+fTable95 <- data.frame("$v_2 \\big\\backslash v_1$" = paste0("**", v2, "**"),
                        fTable95,
                        stringsAsFactors = FALSE,
                        check.names = FALSE)
@@ -798,7 +824,7 @@ print(fTable95,
       include.rownames = FALSE,
       caption.placement = "top",
       sanitize.colnames.function = function(x){x},
-      html.table.attributes = list("border='1' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
+      html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
       floating.environment = "sidewaystable")
 ```
 
@@ -809,7 +835,7 @@ fTable99 <- sapply(v1, function(x) sprintf("%.2f", round(qf(.99, x, v2), 2)))
 fTable99[1, ] <- sprintf("%.0f", as.numeric(fTable99[1, ]), 0)
 colnames(fTable99) <- v1
 colnames(fTable99)[colnames(fTable99) == 'Inf'] <- "$\\infty$"
-fTable99 <- data.frame("$v2 \\big\\backslash v1$" = paste0("**", v2, "**"),
+fTable99 <- data.frame("$v_2 \\big\\backslash v_1$" = paste0("**", v2, "**"),
                        fTable99,
                        stringsAsFactors = FALSE,
                        check.names = FALSE)
@@ -823,6 +849,6 @@ print(fTable99,
       include.rownames = FALSE,
       caption.placement = "top",
       sanitize.colnames.function = function(x){x},
-      html.table.attributes = list("border='1' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
+      html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
       floating.environment = "sidewaystable")
 ```
