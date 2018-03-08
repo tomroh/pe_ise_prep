@@ -617,70 +617,89 @@ print(discreteDistr,
       floating.environment = "sidewaystable")
 ```
 
-### Continuous
+```{r continuous distributions table, results = 'asis'}
+continuous <- c("Uniform",
+                "Exponential",
+                "Normal",
+                "PERT beta",
+                "Triangular",
+                "Gamma",
+                "Weibull",
+                "Lognormal")
 
-$$
-\begin{array}{|c|c|c|c|}
-\hline
-\text{Distribution}& \text{pdf} & \text{cdf} & \text{mean} & \text{variance} & \text{parameters} \\
-\hline
-\text{Uniform} & 
-\frac{1}{b-a} & 
-\frac{x-a}{b-a} & 
-\frac{a+b}{2} & 
-\frac{(b-a)^2}{12} &
-\text{a = minimum, b = maximum} \\ \hline
-\text{Exponential} & 
-\lambda e^{-\lambda x} & 
-1-e^{-\lambda x} & 
-\frac{1}{\lambda} & 
-\frac{1}{\lambda^2} & 
-\lambda \text{ = rate} \\ \hline
-\text{Normal} & 
-\frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} & 
-\frac{1}{2}\big[1+erf\big(\frac{x-\mu}{\sigma\sqrt{2}}\big)\big] & 
-\mu & 
-\sigma^2 & 
-\mu \text{ = mean, } \sigma^2 \text{ = variance} \\ \hline
-\text{PERT beta} & 
-undefined & 
-undefined & 
-\frac{a+4m+b}{6} & 
-\frac{(b-a)^2}{36} & 
-\text{a = 1st percentile, b = 99th percentile, m = mode} \\ \hline
-\text{Triangular} & 
-\begin{cases}
-\frac{(x-a)^2}{(b-a)(c-a)},\quad a\le x\le c \\
-1-\frac{(b-x)^2}{(b-a)(b-c)},\quad c<x\le b
-\end{cases} &
-\begin{cases}
-\frac{(x-a)^2}{(b-a)(c-a)},\quad a\le x\le c \\
-1-\frac{(b-x)^2}{(b-a)(b-c)}, \quad c<x\le b
-\end{cases} & 
-\frac{a+b+c}{3} & 
-\frac{a^2+m^2+b^2-ca-ab-cb}{18} & 
-\text{a = minimum, b = maximum, c = mode} \\ \hline
-\text{Gamma} & 
-\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x} & 
-\frac{1}{\Gamma(\alpha)}\gamma(\alpha,\beta x) & 
-\alpha\beta & 
-\alpha\beta^2 & 
-\alpha \text{ = shape, } \beta \text{ = scale} \\ \hline
-\text{Weibull} & 
-\frac{k}{\lambda}\binom{x}{\lambda}^{k-1}e^{-{(\frac{x}{\lambda}})^k} &
-1-e^{-(\frac{x}{\lambda})^k} & 
- & 
- & 
- \\ \hline
-\text{Lognormal} & 
-\frac{1}{x\sigma\sqrt{2\pi}}e^{\frac{(ln x-\mu)^2}{2\sigma^2}} & 
-\frac{1}{2}+ \frac{1}{2} erf \big[ \frac{ln x-\mu}{\sigma\sqrt{2}}\big]& 
-e^{\mu+\frac{\sigma^2}{2}} & 
-[e^{\sigma^2}-1] e^{2\mu+\sigma^2} & 
-\mu\text{ = mean, } \sigma^2 \text{ = variance} \\
-\hline
-\end{array}
-$$
+pdf <- c("$\\frac{1}{b-a}$",
+         "$\\lambda e^{-\\lambda x}$",
+         "$\\frac{1}{\\sqrt{2\\pi \\sigma^2}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$",
+         "$-$",
+         "$\\begin{cases} \\frac{(x-a)^2}{(b-a)(c-a)},\\quad a\\le x\\le c \\\\  1-\\frac{(b-x)^2}{(b-a)(b-c)},\\quad c<x\\le b
+\\end{cases}$",
+         "$\\frac{\\beta^\\alpha}{\\Gamma(\\alpha)}x^{\\alpha-1}e^{-\\beta x}$",
+         "$\\frac{k}{\\lambda}\\binom{x}{\\lambda}^{k-1}e^{-{(\\frac{x}{\\lambda}})^k}$",
+         "$\\frac{1}{x\\sigma\\sqrt{2\\pi}}e^{\\frac{(ln x-\\mu)^2}{2\\sigma^2}}$")
+
+ccdf <- c("$\\frac{x-a}{b-a}$",
+          "$1-e^{-\\lambda x}$",
+          "$\\frac{1}{2}\\big[1+erf\\big(\\frac{x-\\mu}{\\sigma\\sqrt{2}}\\big)\\big]$",
+          "$-$",
+          "$\\begin{cases} \\frac{(x-a)^2}{(b-a)(c-a)},\\quad a\\le x\\le c \\\\ 1-\\frac{(b-x)^2}{(b-a)(b-c)}, \\quad c<x\\le b
+\\end{cases}$",
+          "$\\frac{1}{\\Gamma(\\alpha)}\\gamma(\\alpha,\\beta x)$",
+          "$1-e^{-(\\frac{x}{\\lambda})^k}$",
+          "$\\frac{1}{2}+ \\frac{1}{2} erf \\big[ \\frac{ln x-\\mu}{\\sigma\\sqrt{2}}\\big]$")
+cmean <- c("$\\frac{a+b}{2}$",
+           "$\\frac{1}{\\lambda}$",
+           "$\\mu$",
+           "$\\frac{a+4m+b}{6}$",
+           "$\\frac{a+b+c}{3}$",
+           "$\\alpha\\beta$",
+           "$-$",
+           "$e^{\\mu+\\frac{\\sigma^2}{2}}$")
+cvariance <- c("$\\frac{(b-a)^2}{12}$",
+               "$\\frac{1}{\\lambda^2}$",
+               "$\\sigma^2$",
+               "$\\frac{(b-a)^2}{36}$",
+               "$\\frac{a^2+m^2+b^2-ca-ab-cb}{18}$",
+               "$\\alpha\\beta^2$",
+               "$-$",
+               "$[e^{\\sigma^2}-1] e^{2\\mu+\\sigma^2}$")
+
+cparameters <- c("$\\text{a = minimum} \\\\ \\text{b = maximum}$",
+                 "$\\lambda \\text{ = rate}$",
+                 "$\\mu \\text{ = mean} \\\\ \\sigma^2 \\text{ = variance}$",
+                 "$\\text{a = 1st percentile} \\\\ \\text{b = 99th percentile} \\\\ \\text{m = mode}$",
+                 "$\\text{a = minimum} \\\\ \\text{b = maximum} \\\\ \\text{c = mode}$",
+                 "$\\alpha \\text{ = shape} \\\\ \\beta \\text{ = scale}$",
+                 "$-$",
+                 "$\\mu\\text{ = mean} \\\\ \\sigma^2 \\text{ = variance}$")
+
+continuousColNames <- c("Distribution", 
+                      "pdf", 
+                      "cdf", 
+                      "mean", 
+                      "variance", 
+                      "parameters")
+continuousDistr <- data.frame(continuous,
+                            pdf,
+                            ccdf,
+                            cmean,
+                            cvariance,
+                            cparameters,
+                            stringsAsFactors = FALSE)
+names(continuousDistr) <- continuousColNames
+
+continuousDistr <- xtable(continuousDistr,
+                        caption = "Continuous",
+                        align = rep("c", ncol(continuousDistr)+1))
+
+print(continuousDistr, 
+      type = 'html',
+      floating = TRUE,
+      include.rownames = FALSE,
+      caption.placement = "top",
+      sanitize.text.function = function(x) {x},
+      html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
+      floating.environment = "sidewaystable")
+```
 
 <p style="page-break-before: always">
 
