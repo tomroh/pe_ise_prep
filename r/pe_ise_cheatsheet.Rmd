@@ -464,6 +464,16 @@ $$R = \prod_{i=1}^n P_i$$
 
 $$R = 1-\prod_{i=1}^n (1-P_i) $$
 
+**Hazard Function**
+
+$$h(x)=\frac{f(x)}{R(x)} \\ f(x) \text{ = density function, } R(x) \text{ = survival function}$$
+
+**Exponential**
+$$h(x)=\lambda$$
+
+**Weibull**
+$$h(x)=\frac{\beta}{\alpha}\big(\frac{x}{\alpha}\big)^{\beta-1}$$
+
 # Statistics
 
 ## Normal Distribution
@@ -554,6 +564,30 @@ knitr::kable(anovaTable)
 ```
 
 <p style="page-break-before: always">
+
+## Hypothesis Testing
+
+```{r}
+hypothesisTable <- xtable(hypothesisTable,
+                        caption = "Discrete",
+                        align = rep("c", ncol(hypothesisTable)+1))
+
+print(hypothesisTable, 
+      type = 'html',
+      floating = TRUE,
+      include.rownames = FALSE,
+      caption.placement = "top",
+      sanitize.text.function = function(x) {x},
+      html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
+      floating.environment = "sidewaystable")
+```
+
+
+## Bayesian Analysis
+
+**Bayes' Theorem**
+
+$$P(A|B)=\frac{P(B|A)P(A)}{P(B)}=\frac{P(B|A)P(A)}{P(B|A)P(A)+P(B|A^\prime)P(A^\prime)}$$
 
 ## Distributions
 
