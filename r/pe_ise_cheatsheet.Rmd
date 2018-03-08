@@ -634,7 +634,7 @@ pdf <- c("$\\frac{1}{b-a}$",
          "$\\begin{cases} \\frac{(x-a)^2}{(b-a)(c-a)},\\quad a\\le x\\le c \\\\  1-\\frac{(b-x)^2}{(b-a)(b-c)},\\quad c<x\\le b
 \\end{cases}$",
          "$\\frac{\\beta^\\alpha}{\\Gamma(\\alpha)}x^{\\alpha-1}e^{-\\beta x}$",
-         "$\\frac{k}{\\lambda}\\binom{x}{\\lambda}^{k-1}e^{-{(\\frac{x}{\\lambda}})^k}$",
+         "$\\frac{\\beta}{\\alpha}\\binom{x}{\\alpha}^{\\beta-1}e^{-{(\\frac{x}{\\alpha}})^\\beta}$",
          "$\\frac{1}{x\\sigma\\sqrt{2\\pi}}e^{\\frac{(ln x-\\mu)^2}{2\\sigma^2}}$")
 
 ccdf <- c("$\\frac{x-a}{b-a}$",
@@ -644,7 +644,7 @@ ccdf <- c("$\\frac{x-a}{b-a}$",
           "$\\begin{cases} \\frac{(x-a)^2}{(b-a)(c-a)},\\quad a\\le x\\le c \\\\ 1-\\frac{(b-x)^2}{(b-a)(b-c)}, \\quad c<x\\le b
 \\end{cases}$",
           "$\\frac{1}{\\Gamma(\\alpha)}\\gamma(\\alpha,\\beta x)$",
-          "$1-e^{-(\\frac{x}{\\lambda})^k}$",
+          "$1-e^{-(\\frac{x}{\\alpha})^\\beta}$",
           "$\\frac{1}{2}+ \\frac{1}{2} erf \\big[ \\frac{ln x-\\mu}{\\sigma\\sqrt{2}}\\big]$")
 cmean <- c("$\\frac{a+b}{2}$",
            "$\\frac{1}{\\lambda}$",
