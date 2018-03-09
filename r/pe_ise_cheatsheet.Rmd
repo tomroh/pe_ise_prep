@@ -567,16 +567,25 @@ knitr::kable(anovaTable)
 
 ## Hypothesis Testing
 
-```{r}
+```{r results = 'asis'}
+hypothesisTable <- data.frame(" " = c("$\\text{Accept } H_0$", 
+                                      "$\\text{Reject } H_0$"),
+                              "$H_0 \\text{ is true}$" = c("Correct",
+                                                          "Type I Error"),
+                              "$H_0 \\text{ is false}$" = c("Correct",
+                                                           "Type II Error"),
+                              check.names = FALSE)
+
 hypothesisTable <- xtable(hypothesisTable,
-                        caption = "Discrete",
-                        align = rep("c", ncol(hypothesisTable)+1))
+                          caption = "Error Table",
+                          align = rep("c", ncol(hypothesisTable)+1))
 
 print(hypothesisTable, 
       type = 'html',
       floating = TRUE,
       include.rownames = FALSE,
       caption.placement = "top",
+      sanitize.colnames.function = function(x){x},
       sanitize.text.function = function(x) {x},
       html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
       floating.environment = "sidewaystable")
