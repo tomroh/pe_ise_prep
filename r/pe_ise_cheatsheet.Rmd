@@ -16,6 +16,41 @@ library(data.table)
 library(DiagrammeR)
 library(xtable)
 theme_set(trstyles::theme_tr())
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+
+  numPlots = length(plots)
+
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+
+ if (numPlots==1) {
+    print(plots[[1]])
+
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
 ```
 
 # Systems Definition, Analysis, and Design
@@ -570,8 +605,8 @@ knitr::kable(anovaTable)
 ```{r, warning=FALSE}
 x <- seq(-3.5, 3.5, by = .001)
 h0Less <- ggplot() +
-  geom_vline(xintercept = 0) +
-  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_hline(yintercept = 0, color = "black") +
   stat_function(aes(x = x),  
                 fun = dnorm, 
                 size = 1) +
@@ -580,23 +615,25 @@ h0Less <- ggplot() +
                    xend = qnorm(.05),
                    yend = dnorm(qnorm(.05))
   ),
-  color = 'black',
-  size = 1) +
+  #size = 1,
+  color = 'black') +
   theme_void() +
+  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm")) +
   annotate(geom = 'text',
-           x = c(quantile(x, .1),
+           x = c(quantile(x, .15),
                  qnorm(.05)),
            y = c(dnorm(qnorm(.25)),
                  -.04),
            label = c(expression(atop(H[0] : mu == mu[0],
                                      H[1] : mu < mu[0])),
                      expression(-z[alpha])),
-           size = 10,
-           parse = TRUE)
+           size = 4,
+           parse = TRUE) +
+  coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
 
 h0More <- ggplot() +
-  geom_vline(xintercept = 0) +
-  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_hline(yintercept = 0, color = "black") +
   stat_function(aes(x = x),  
                 fun = dnorm, 
                 size = 1) +
@@ -605,23 +642,25 @@ h0More <- ggplot() +
                    xend = qnorm(.95),
                    yend = dnorm(qnorm(.95))
   ),
-  color = 'black',
-  size = 1) +
+  #size = 1,
+  color = 'black') +
   theme_void() +
+  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm")) +
   annotate(geom = 'text',
-           x = c(quantile(x, .1),
+           x = c(quantile(x, .15),
                  qnorm(.95)),
            y = c(dnorm(qnorm(.25)),
                  -.04),
            label = c(expression(atop(H[0] : mu == mu[0],
                                      H[1] : mu > mu[0])),
                      expression(z[alpha])),
-           size = 10,
-           parse = TRUE)
+           size = 4,
+           parse = TRUE) +
+  coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
 
 h0Equal <- ggplot() +
-  geom_vline(xintercept = 0) +
-  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_hline(yintercept = 0, color = "black") +
   stat_function(aes(x = x),  
                 fun = dnorm, 
                 size = 1) +
@@ -631,11 +670,12 @@ h0Equal <- ggplot() +
                    yend = c(dnorm(qnorm(.025)),
                             dnorm(qnorm(.975)))
   ),
-  color = 'black',
-  size = 1) +
+  #size = 1,
+  color = 'black') +
   theme_void() +
+  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm")) +
   annotate(geom = 'text',
-           x = c(quantile(x, .1),
+           x = c(quantile(x, .15),
                  qnorm(.975),
                  qnorm(.025)),
            y = c(dnorm(qnorm(.25)),
@@ -645,15 +685,11 @@ h0Equal <- ggplot() +
                                      H[1] : mu != mu[0])),
                      expression(z[alpha/2]),
                      expression(-z[alpha/2])),
-           size = 10,
-           parse = TRUE)
+           size = 4,
+           parse = TRUE) +
+  coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
 
-h0Less +
-  coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
-h0More +
-  coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
-h0Equal + 
-  coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
+multiplot(h0Less, h0More, h0Equal, cols = 3)
 ```
 
 
