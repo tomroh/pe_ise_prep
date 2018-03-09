@@ -567,6 +567,96 @@ knitr::kable(anovaTable)
 
 ## Hypothesis Testing
 
+```{r, warning=FALSE}
+x <- seq(-3.5, 3.5, by = .001)
+h0Less <- ggplot() +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  stat_function(aes(x = x),  
+                fun = dnorm, 
+                size = 1) +
+  geom_segment(aes(x = qnorm(.05),
+                   y = 0,
+                   xend = qnorm(.05),
+                   yend = dnorm(qnorm(.05))
+  ),
+  color = 'black',
+  size = 1) +
+  theme_void() +
+  annotate(geom = 'text',
+           x = c(quantile(x, .1),
+                 qnorm(.05)),
+           y = c(dnorm(qnorm(.25)),
+                 -.04),
+           label = c(expression(atop(H[0] : mu == mu[0],
+                                     H[1] : mu < mu[0])),
+                     expression(-z[alpha])),
+           size = 10,
+           parse = TRUE)
+
+h0More <- ggplot() +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  stat_function(aes(x = x),  
+                fun = dnorm, 
+                size = 1) +
+  geom_segment(aes(x = qnorm(.95),
+                   y = 0,
+                   xend = qnorm(.95),
+                   yend = dnorm(qnorm(.95))
+  ),
+  color = 'black',
+  size = 1) +
+  theme_void() +
+  annotate(geom = 'text',
+           x = c(quantile(x, .1),
+                 qnorm(.95)),
+           y = c(dnorm(qnorm(.25)),
+                 -.04),
+           label = c(expression(atop(H[0] : mu == mu[0],
+                                     H[1] : mu > mu[0])),
+                     expression(z[alpha])),
+           size = 10,
+           parse = TRUE)
+
+h0Equal <- ggplot() +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  stat_function(aes(x = x),  
+                fun = dnorm, 
+                size = 1) +
+  geom_segment(aes(x = c(qnorm(.025), qnorm(.975)),
+                   y = c(0, 0),
+                   xend = c(qnorm(.025), qnorm(.975)),
+                   yend = c(dnorm(qnorm(.025)),
+                            dnorm(qnorm(.975)))
+  ),
+  color = 'black',
+  size = 1) +
+  theme_void() +
+  annotate(geom = 'text',
+           x = c(quantile(x, .1),
+                 qnorm(.975),
+                 qnorm(.025)),
+           y = c(dnorm(qnorm(.25)),
+                 -.05,
+                 -.05),
+           label = c(expression(atop(H[0] : mu == mu[0],
+                                     H[1] : mu != mu[0])),
+                     expression(z[alpha/2]),
+                     expression(-z[alpha/2])),
+           size = 10,
+           parse = TRUE)
+
+h0Less +
+  coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
+h0More +
+  coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
+h0Equal + 
+  coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
+```
+
+
 ```{r results = 'asis'}
 hypothesisTable <- data.frame(" " = c("$\\text{Accept } H_0$", 
                                       "$\\text{Reject } H_0$"),
