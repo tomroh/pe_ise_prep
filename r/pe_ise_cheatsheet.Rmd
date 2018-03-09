@@ -571,9 +571,9 @@ knitr::kable(anovaTable)
 hypothesisTable <- data.frame(" " = c("$\\text{Accept } H_0$", 
                                       "$\\text{Reject } H_0$"),
                               "$H_0 \\text{ is true}$" = c("Correct",
-                                                          "Type I Error"),
-                              "$H_0 \\text{ is false}$" = c("Correct",
-                                                           "Type II Error"),
+                                                           "Type I Error"),
+                              "$H_0 \\text{ is false}$" = c("Type II Error",
+                                                            "Correct"),
                               check.names = FALSE)
 
 hypothesisTable <- xtable(hypothesisTable,
