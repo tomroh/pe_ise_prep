@@ -552,7 +552,11 @@ $$df=\frac{\big(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\big)^2}{\frac{(\frac{s_1^2}{
 
 ```{r, warning=FALSE}
 x <- seq(-3.5, 3.5, by = .001)
-h0Less <- ggplot() +
+h0Less <- ggplot() + 
+  geom_ribbon(aes(x = seq(min(x), qnorm(.05), by = .001),
+                  ymin = 0,
+                  ymax = dnorm(seq(min(x), qnorm(.05), by = .001))),
+              fill = 'gray') +
   geom_vline(xintercept = 0, color = "black") +
   geom_hline(yintercept = 0, color = "black") +
   stat_function(aes(x = x),  
@@ -580,6 +584,10 @@ h0Less <- ggplot() +
   coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
 
 h0More <- ggplot() +
+  geom_ribbon(aes(x = seq(qnorm(.95), max(x), by = .001),
+                  ymin = 0,
+                  ymax = dnorm(seq(qnorm(.95), max(x), by = .001))),
+              fill = 'gray') +
   geom_vline(xintercept = 0, color = "black") +
   geom_hline(yintercept = 0, color = "black") +
   stat_function(aes(x = x),  
@@ -607,6 +615,14 @@ h0More <- ggplot() +
   coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
 
 h0Equal <- ggplot() +
+   geom_ribbon(aes(x = seq(min(x), qnorm(.025), by = .001),
+                  ymin = 0,
+                  ymax = dnorm(seq(min(x), qnorm(.025), by = .001))),
+              fill = 'gray') +
+    geom_ribbon(aes(x = seq(qnorm(.975), max(x), by = .001),
+                  ymin = 0,
+                  ymax = dnorm(seq(qnorm(.975), max(x), by = .001))),
+              fill = 'gray') +
   geom_vline(xintercept = 0, color = "black") +
   geom_hline(yintercept = 0, color = "black") +
   stat_function(aes(x = x),  
