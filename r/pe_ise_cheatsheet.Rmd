@@ -926,9 +926,9 @@ $\text{Normal Distribution}$
 ```{r , fig.width=2, fig.height=1.5, warning=FALSE}
 x <- seq(-3.5, 3.5, by = .001)
 ggplot() +
-  geom_ribbon(aes(x = seq(qnorm(.95), max(x), by = .001),
+  geom_ribbon(aes(x = seq(min(x), qnorm(.95), by = .001),
                   ymin = 0,
-                  ymax = dnorm(seq(qnorm(.95), max(x), by = .001))),
+                  ymax = dnorm(seq(min(x), qnorm(.95), by = .001))),
               fill = 'gray') +
   geom_vline(xintercept = 0, color = "black") +
   geom_hline(yintercept = 0, color = "black") +
