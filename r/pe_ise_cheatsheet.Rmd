@@ -924,7 +924,12 @@ $\text{Normal Distribution}$
 </h2>
 
 ```{r , fig.width=2, fig.height=1.5, warning=FALSE}
+x <- seq(-3.5, 3.5, by = .001)
 ggplot() +
+  geom_ribbon(aes(x = seq(qnorm(.95), max(x), by = .001),
+                  ymin = 0,
+                  ymax = dnorm(seq(qnorm(.95), max(x), by = .001))),
+              fill = 'gray') +
   geom_vline(xintercept = 0, color = "black") +
   geom_hline(yintercept = 0, color = "black") +
   stat_function(aes(x = x),  
@@ -979,7 +984,12 @@ $t \text{ Distribution}$
 </h2>
 
 ```{r , fig.width=2, fig.height=1.5, warning=FALSE}
+x <- seq(-3.5, 3.5, by = .001)
 ggplot() +
+  geom_ribbon(aes(x = seq(qnorm(.95), max(x), by = .001),
+                  ymin = 0,
+                  ymax = dnorm(seq(qnorm(.95), max(x), by = .001))),
+              fill = 'gray') +
   geom_vline(xintercept = 0, color = "black") +
   geom_hline(yintercept = 0, color = "black") +
   stat_function(aes(x = x),  
@@ -1037,6 +1047,12 @@ $\chi^2 \text{ Distribution}$
 x <- seq(0, 30, .01)
 v <- 10
 ggplot() +
+  geom_ribbon(aes(x = seq(qchisq(.95, df = v), max(x), by = .001),
+                  ymin = 0,
+                  ymax = dchisq(seq(qchisq(.95, df = v), max(x), by = .001),
+                                df = v)
+                  ),
+              fill = 'gray') +
   geom_vline(xintercept = 0, color = "black") +
   geom_hline(yintercept = 0, color = "black") +
   stat_function(aes(x = x),  
@@ -1094,6 +1110,12 @@ x <- seq(0, 5, .01)
 v1 <- 10
 v2 <- 10
 ggplot() +
+  geom_ribbon(aes(x = seq(qf(.95, df1 = v1, df2 = v2), max(x), by = .001),
+                  ymin = 0,
+                  ymax = df(seq(qf(.95, df1 = v1, df2 = v2), max(x), by = .001),
+                                df1 = v1, df2 = v2)
+                  ),
+              fill = 'gray') +
   geom_vline(xintercept = 0, color = "black") +
   geom_hline(yintercept = 0, color = "black") +
   stat_function(aes(x = x),  
