@@ -543,63 +543,6 @@ $$t_0=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}$$
 
 $$df=\frac{\big(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\big)^2}{\frac{(\frac{s_1^2}{n_1})^2}{n_1-1}+{\frac{(\frac{s_1^2}{n_1})^2}{n_1-1}}}$$
 
-## Chi-Squared Goodness of Fit
-
-$$\chi^2=\sum_{j=1}^k\frac{(O_j-E_j)^2}{E_j}$$
-
-## Linear Regression
-
-
-$$SSR=\sum_{i=1}^n(\hat{y}_i-\bar{y})^2$$
-
-$$SSE = \sum_{i=1}^n(y_i-\hat{y}_i)^2$$
-
-$$SST = \sum_{i=1}^n(y_i-\bar{y})^2$$
-
-$$R^2=\frac{SSR}{SST} = 1-\frac{SSE}{SST}$$
-
-## ANOVA
-
-$$SSA+SSE=SST$$
-
-**One-Way**
-
-Given Treatment A:
-
-$$SSA+SSE=SST$$
-
-```{r oneway ANOVA}
-SS <- c('SSA', 'SSE', 'SST')
-df <- c('a-1', 'a(n-1)', 'an-1')
-MS <- c('SSA/dfA', 'SSE/dfE', '')
-fstat <- c('MSA/MSE', '', '')
-anovaTable <- data.frame(SS,
-                         df,
-                         MS,
-                         "F" = fstat)
-knitr::kable(anovaTable)
-```
-
-**Two-Way**
-
-Given treatment factors A & B:
-
-$$SST=SSA+SSB+SSAB+SSE$$
-
-```{r twoway ANOVA}
-SS <- c('SSA', 'SSB', 'SSAB', 'SSE', 'SST')
-df <- c('a-1', 'b-1', '(a-1)(b-1)', 'ab(n-1)', 'abn-1')
-MS <- c('SSA/dfA', 'SSB/dfB', 'SSAB/dfAB', 'SSE/dfE', '')
-fstat <- c('MSA/MSE', 'MSB/MSE', 'MSAB/MSE', '', '')
-anovaTable <- data.frame(SS,
-                         df,
-                         MS,
-                         "F" = fstat)
-knitr::kable(anovaTable)
-```
-
-<p style="page-break-before: always">
-
 ## Hypothesis Testing
 
 ```{r, warning=FALSE}
@@ -717,12 +660,69 @@ print(hypothesisTable,
       floating.environment = "sidewaystable")
 ```
 
+## Chi-Squared Goodness of Fit
+
+$$\chi^2=\sum_{j=1}^k\frac{(O_j-E_j)^2}{E_j}$$
+
+## Linear Regression
+
+$$SSR=\sum_{i=1}^n(\hat{y}_i-\bar{y})^2$$
+
+$$SSE = \sum_{i=1}^n(y_i-\hat{y}_i)^2$$
+
+$$SST = \sum_{i=1}^n(y_i-\bar{y})^2$$
+
+$$R^2=\frac{SSR}{SST} = 1-\frac{SSE}{SST}$$
+
+## ANOVA
+
+$$SSA+SSE=SST$$
+
+**One-Way**
+
+Given Treatment A:
+
+$$SSA+SSE=SST$$
+
+```{r oneway ANOVA}
+SS <- c('SSA', 'SSE', 'SST')
+df <- c('a-1', 'a(n-1)', 'an-1')
+MS <- c('SSA/dfA', 'SSE/dfE', '')
+fstat <- c('MSA/MSE', '', '')
+anovaTable <- data.frame(SS,
+                         df,
+                         MS,
+                         "F" = fstat)
+knitr::kable(anovaTable)
+rm(df)
+```
+
+**Two-Way**
+
+Given treatment factors A & B:
+
+$$SST=SSA+SSB+SSAB+SSE$$
+
+```{r twoway ANOVA}
+SS <- c('SSA', 'SSB', 'SSAB', 'SSE', 'SST')
+df <- c('a-1', 'b-1', '(a-1)(b-1)', 'ab(n-1)', 'abn-1')
+MS <- c('SSA/dfA', 'SSB/dfB', 'SSAB/dfAB', 'SSE/dfE', '')
+fstat <- c('MSA/MSE', 'MSB/MSE', 'MSAB/MSE', '', '')
+anovaTable <- data.frame(SS,
+                         df,
+                         MS,
+                         "F" = fstat)
+knitr::kable(anovaTable)
+rm(df)
+```
 
 ## Bayesian Analysis
 
 **Bayes' Theorem**
 
 $$P(A|B)=\frac{P(B|A)P(A)}{P(B)}=\frac{P(B|A)P(A)}{P(B|A)P(A)+P(B|A^\prime)P(A^\prime)}$$
+
+<p style="page-break-before: always">
 
 ## Distributions
 
@@ -902,7 +902,33 @@ print(ccf,
 $\text{Normal Distribution}$
 </h2>
 
-```{r results='asis'}
+```{r , fig.width=2, fig.height=1.5, warning=FALSE}
+ggplot() +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_hline(yintercept = 0, color = "black") +
+  stat_function(aes(x = x),  
+                fun = dnorm, 
+                size = 1) +
+  geom_segment(aes(x = qnorm(.95),
+                   y = 0,
+                   xend = qnorm(.95),
+                   yend = dnorm(qnorm(.95))
+  ),
+  #size = 1,
+  color = 'black') +
+  theme_void() +
+  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm")) +
+  annotate(geom = 'text',
+           x = c(qnorm(.95)),
+           y = c(-.04),
+           label = c(expression(z[alpha])),
+           size = 4,
+           parse = TRUE) +
+  coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
+```
+
+
+```{r Normal Dist Table, results='asis'}
 normalTable <- matrix(round(pnorm(seq(0, 3.49, by = .01)), 4), 
                       ncol = 10,
                       byrow = TRUE)
@@ -930,6 +956,31 @@ print(normalTable,
 <h2>
 $t \text{ Distribution}$
 </h2>
+
+```{r , fig.width=2, fig.height=1.5, warning=FALSE}
+ggplot() +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_hline(yintercept = 0, color = "black") +
+  stat_function(aes(x = x),  
+                fun = dnorm, 
+                size = 1) +
+  geom_segment(aes(x = qnorm(.95),
+                   y = 0,
+                   xend = qnorm(.95),
+                   yend = dnorm(qnorm(.95))
+  ),
+  #size = 1,
+  color = 'black') +
+  theme_void() +
+  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm")) +
+  annotate(geom = 'text',
+           x = c(qnorm(.95)),
+           y = c(-.04),
+           label = c(expression(t[paste(alpha,',',v)])),
+           size = 4,
+           parse = TRUE) +
+  coord_cartesian(ylim = c(-.06, dnorm(qnorm(.5))))
+```
 
 ```{r t distribution, results='asis'}
 alpha <- c(.1, .05, .025, .01, .005)
@@ -961,6 +1012,34 @@ print(tTable,
 $\chi^2 \text{ Distribution}$
 </h2>
 
+```{r , fig.width=2, fig.height=1.5, warning=FALSE}
+x <- seq(0, 30, .01)
+v <- 10
+ggplot() +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_hline(yintercept = 0, color = "black") +
+  stat_function(aes(x = x),  
+                fun = dchisq, 
+                args = list(df = v),
+                size = 1) +
+  geom_segment(aes(x = qchisq(.95, df = v),
+                   y = 0,
+                   xend = qchisq(.95, df = v),
+                   yend = dchisq(qchisq(.95, df = v), df = v)
+  ),
+  #size = 1,
+  color = 'black') +
+  theme_void() +
+  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm")) +
+  annotate(geom = 'text',
+           x = c(qchisq(.95, df = v)),
+           y = c(-.015),
+           label = c(expression( paste(Chi^2)[paste(alpha,',','v')])),
+           size = 4,
+           parse = TRUE) +
+  coord_cartesian(ylim = c(-.02, dchisq(qchisq(.5, df = v), df = v)))
+```
+
 ```{r chi squared table, results = 'asis', echo=FALSE}
 alpha <- c(.995, .99, .975, .95, .9, .75, .5, .25, .1, .05, .025, .01, .005, .001)
 v <- c(seq(1, 25, by = 1), seq(30, 100, by = 10))
@@ -989,6 +1068,34 @@ print(chiTable,
 $F(v_1, v_2) \text{ Distribution}$
 </h2>
 
+```{r , fig.width=2, fig.height=1.5, warning=FALSE}
+x <- seq(0, 5, .01)
+v1 <- 10
+v2 <- 10
+ggplot() +
+  geom_vline(xintercept = 0, color = "black") +
+  geom_hline(yintercept = 0, color = "black") +
+  stat_function(aes(x = x),  
+                fun = df, 
+                args = list(df1 = v1, df2 = v2),
+                size = 1) +
+  geom_segment(aes(x = qf(.95, df1 = v1, df2 = v2),
+                   y = 0,
+                   xend = qf(.95, df1 = v1, df2 = v2),
+                   yend = df(qf(.95, df1 = v1, df2 = v2), df1 = v1, df2 = v2)
+  ),
+  #size = 1,
+  color = 'black') +
+  theme_void() +
+  theme(plot.margin = unit(c(.1,.1,.1,.1), "cm")) +
+  annotate(geom = 'text',
+           x = c(qf(.95, df1 = v1, df2 = v2)),
+           y = c(-.07),
+           label = c(expression(F(paste(v1,',',v2)))),
+           size = 4,
+           parse = TRUE) +
+  coord_cartesian(ylim = c(-.07, df(qf(.25, df1 = v1, df2 = v2), df1 = v1, df2 = v2)))
+```
 
 ```{r 95th F Dist, results = 'asis', echo = FALSE}
 v1 <- c(seq(1, 10, by = 1), 12, 15, 20, 24, 30, 40, 60, 120, Inf)
