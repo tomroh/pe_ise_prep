@@ -3,8 +3,8 @@ title: "PE ISE Reference Sheet"
 author: "Thomas Roh"
 date: "January 20, 2018"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -424,6 +424,12 @@ $$VT^n=C \\ V = \textrm{speed surface feet per minute} \\ T = \textrm{tool life 
 ## Work Sampling
 
 $$D = Z_{\alpha/2}\sqrt{\frac{p(-1-p)}{n}}, \quad Z_{\alpha/2}\sqrt{\frac{1-p}{pn}} \\ p = \textrm{proportion of observed time} \\ D = \textrm{absolute error} \\ R = \textrm{relative error} = \frac{D}{p} \\ n = \textrm{sample size}$$
+
+## Sample Size
+
+$$E = \frac{z_{\frac{\alpha}{2}}\sigma}{\sqrt{n}}$$
+
+$$n = \bigg( \frac{z_{\frac{\alpha}{2}}\sigma}{E} \bigg)^2$$
 
 ## Critical Path Method
 
