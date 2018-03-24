@@ -394,6 +394,12 @@ add *y* to each intersection element. Go to step 3.
 
 # Work Design
 
+## Controls
+
+An administrative control are training, policies, or procedures.
+
+An engineering control is a physical modification to mitigate hazards.
+
 ## Noise Dose
 
 **Dose**
