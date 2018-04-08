@@ -3,7 +3,6 @@ title: "PE ISE Reference Sheet"
 author: "Thomas Roh"
 date: "January 20, 2018"
 output:
-  pdf_document: default
   html_document: default
 ---
 
@@ -224,6 +223,8 @@ the same situation
 Optimize the process that is the bottleneck, then re-evaulate the bottleneck and
 repeat.
 
+<p style="page-break-before: always">
+
 # Facilities Engineering and Planning
 
 ## People/Equipment Requirements
@@ -273,6 +274,8 @@ relChart <- data.frame(Code, Closeness, Rank,
 knitr::kable(relChart)
 ```
 
+<p style="page-break-before: always">
+
 # Supply Chain Logistics
 
 ## Forecasting Methods
@@ -283,7 +286,7 @@ $$\hat{d}_t = \frac{\sum_{i=1}^{n}d_{t-i}}{n}$$
 
 ### Exponentially Weighted Moving Average
 
-$$\hat{d}_t = \alpha d_{t-1}+(1-\alpha)\hat{d}_{t-1},\quad 0 \leq \alpha( \textrm{smoothing constant})\leq1$$
+$$\hat{d}_t = \alpha d_{t-1}+(1-\alpha)\hat{d}_{t-1},\quad 0 \leq \alpha( \textrm{smoothing constant})\leq1 \\ d_{t-1} \text{ = actual demand, } \hat{d}_{t-1} \text{ = forecasted demand}$$
 
 ## Production Planning Methods
 
@@ -392,6 +395,8 @@ cannot be made proceed to next step
 add *y* to each intersection element. Go to step 3.
 6. Transfer the assignment plan to the original cost table.
 
+<p style="page-break-before: always">
+
 # Work Design
 
 ## Controls
@@ -447,7 +452,7 @@ $$RWL = 51(10/H)(1-.0075|V-30|)(.82+\frac{1.8}{D}(1-.0032A)FM*CM \\ \textrm{H = 
 
 ## Learning Curve
 
-$$y=kx^n, n=\frac{log_{e}\phi}{log_{e}(2)} \\ \phi=\textrm{learning ratio}=\frac{T(2N)}{T(N)}, \textrm{T(N) = time to produce Nth unit} \\ \textrm{y=total time, k = time to produce first unit, x = number of units produced}$$
+$$y=kx^n, n=\frac{log_{e}\phi}{log_{e}(2)} \\ \phi=\textrm{learning ratio}=\frac{T(2N)}{T(N)}, \textrm{T(N) = time to produce Nth unit} \\ \textrm{y= time to produce xth unit, k = time to produce first unit, x = cumulative number of units produced}$$
 
 **Total Learning Time:**
 
@@ -456,6 +461,8 @@ $$T=k\frac{[(x_2+\frac{1}{2})^{n+1}-(x_1+\frac{1}{2})^{n+1}]}{n+1}$$
 **Remission Line:**
 
 $$y=k+\frac{(k-s)(x-1)}{1-x_s}$$
+
+<p style="page-break-before: always">
 
 # Quality Control
 
@@ -525,6 +532,8 @@ $$h(x)=\lambda$$
 
 **Weibull**
 $$h(x)=\frac{\beta}{\alpha}\big(\frac{x}{\alpha}\big)^{\beta-1}$$
+
+<p style="page-break-before: always">
 
 # Statistics
 
