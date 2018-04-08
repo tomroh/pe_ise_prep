@@ -113,9 +113,18 @@ Shows when each hand is busy and idle. It is sometimes called a simo chart.
 ### Queueing Models
 
 <h5>
+$Little's Law$
+</h5>
+<hr>
+
+$$L = \lambda W$$
+
+<h5>
 $M/M/c/K\quad Queue$
 </h5>
 <hr>
+
+
 
 **Effective vs. Offered Load:**
 
