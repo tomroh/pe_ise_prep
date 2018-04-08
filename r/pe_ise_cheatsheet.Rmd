@@ -305,9 +305,17 @@ $$\bigg(\frac{F}{P}\bigg)= (1+i)^N, \quad
 \bigg(\frac{P}{A}\bigg)= \frac{(1+i)^N-1}{i(1+i)^N} 
 \\
 \bigg(\frac{A}{F}\bigg)= \frac{i}{(1+i)^N-1}, \quad
-\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1}$$
+\bigg(\frac{A}{P}\bigg)= \frac{i(1+i)^N}{(1+i)^N-1} 
+\\
+\bigg(\frac{P}{G}\bigg)=\frac{1}{i}\bigg[\frac{(1+i)^N-1}{i(1+i)^N}-\frac{N}{(1+i)^N} \bigg], \quad \bigg(\frac{A}{G}\bigg)=\frac{1}{i}-\frac{N}{(1+i)^N-1}$$
 
 *Denominator is current value and Numerator is desired conversion
+
+**Depreciation**
+
+Modified Accelerated Cost Recovery System (MACRS) - See Tables
+
+$$\text{Straight Line (SL) - } \frac{1}{n}$$
 
 ## Production Scheduling Methods
 
@@ -448,7 +456,7 @@ $$\textrm{Observed Time * Pace Rating * (1 + personal time allowance) * (1 + fat
 
 Units are pounds and inches.
 
-$$RWL = 51(10/H)(1-.0075|V-30|)(.82+\frac{1.8}{D}(1-.0032A)FM*CM \\ \textrm{H = horizontal location of the load forward of the midpoint of the ankles} \\ \textrm{V = vertical location of the load} \\ \textrm{D = Vertical travel distance between the origin and the destination} \\ \textrm{A=angle of asymmetry between hands and feet} \\ \textrm{FM = frequency multiplier (from table)} \\ \textrm{CM = coupling mulitiplier (from table)}$$
+$$RWL = 51\cdot (\frac{10}{H})\cdot (1-.0075|V-30|)\cdot (.82+\frac{1.8}{D})\cdot (1-.0032A)\cdot FM \cdot CM \\ \textrm{H = horizontal location of the load forward of the midpoint of the ankles} \\ \textrm{V = vertical location of the load} \\ \textrm{D = Vertical travel distance between the origin and the destination} \\ \textrm{A=angle of asymmetry between hands and feet} \\ \textrm{FM = frequency multiplier (from table)} \\ \textrm{CM = coupling mulitiplier (from table)}$$
 
 ## Learning Curve
 
