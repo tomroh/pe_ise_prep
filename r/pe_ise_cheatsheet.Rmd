@@ -552,7 +552,7 @@ $$h(x)=\frac{\beta}{\alpha}\big(\frac{x}{\alpha}\big)^{\beta-1}$$
 
 **Mean Time to Failure**
 
-$$\frac{1}{n}$$
+$$\frac{1}{\lambda}, \\ \lambda \text{ = constant failure rate}$$
 
 ## Six Sigma
 
@@ -573,7 +573,6 @@ print(sixsigma,
       sanitize.text.function = function(x) {x},
       html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
       floating.environment = "sidewaystable")
-
 ```
 
 
