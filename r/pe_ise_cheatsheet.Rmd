@@ -556,9 +556,23 @@ $$\frac{1}{n}$$
 
 ## Six Sigma
 
-```{r}
-sprintf("%.1f", 1000000*(1-pnorm(1:6-1.5)))
-dpm <- sprintf("%.1f", 1000000*(1-pnorm(1:6-2)))
+```{r results='asis'}
+sigmas <- seq(1, 6, .5)
+dpm <- sprintf("%.3f", 1000000*(1-pnorm(sigmas)))
+sixsigma <- data.frame("$\\sigma$" = sigmas, 
+                       "Defects per Million" = dpm,
+                       check.names = FALSE)
+sixsigma <- xtable(sixsigma,
+                   align = rep("c", 3))
+
+print(sixsigma, 
+      type = 'html',
+      floating = TRUE,
+      include.rownames = FALSE,
+      caption.placement = "top",
+      sanitize.text.function = function(x) {x},
+      html.table.attributes = list("border='2' cellpadding='15' cellpadding='5' rules ='all' width ='100%'"),
+      floating.environment = "sidewaystable")
 
 ```
 
