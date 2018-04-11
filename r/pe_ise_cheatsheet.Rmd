@@ -554,6 +554,15 @@ $$h(x)=\frac{\beta}{\alpha}\big(\frac{x}{\alpha}\big)^{\beta-1}$$
 
 $$\frac{1}{n}$$
 
+## Six Sigma
+
+```{r}
+sprintf("%.1f", 1000000*(1-pnorm(1:6-1.5)))
+dpm <- sprintf("%.1f", 1000000*(1-pnorm(1:6-2)))
+
+```
+
+
 <p style="page-break-before: always">
 
 # Statistics
