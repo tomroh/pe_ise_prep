@@ -585,6 +585,9 @@ $$t_0=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}$$
 **df for Two Sample t-test:**
 
 $$df=\frac{\big(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\big)^2}{\frac{(\frac{s_1^2}{n_1})^2}{n_1-1}+{\frac{(\frac{s_1^2}{n_1})^2}{n_1-1}}}$$
+**Paired t-test:**
+
+$$t_0 = \frac{\bar{d}-0}{\frac{s_d}{\sqrt{n}}}$$
 
 ## Hypothesis Testing
 
