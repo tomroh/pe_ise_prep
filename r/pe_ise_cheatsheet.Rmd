@@ -550,6 +550,10 @@ $$h(x)=\lambda$$
 **Weibull**
 $$h(x)=\frac{\beta}{\alpha}\big(\frac{x}{\alpha}\big)^{\beta-1}$$
 
+**Mean Time to Failure**
+
+$$\frac{1}{n}$$
+
 <p style="page-break-before: always">
 
 # Statistics
